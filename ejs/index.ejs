@@ -1,3 +1,11 @@
+<!doctype html>
+<html>
+    <head>
+        <title><%= title || 'untitled' %></title>
+    </head>
+    <body>
 
+       <%- include('layouts/' + eData.layout,eData) %>
 
-<h1>EJS and Hapi! num = <%= num %></h1>
+    </body>
+</html>

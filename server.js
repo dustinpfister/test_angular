@@ -12,10 +12,11 @@ server.connection({
     host: 'localhost'
 });
 
+// JavaScript path
 server.route({
 
     method: 'GET',
-    path: '/js/{modname}/{filename}',
+    path: '/lib/{modname}/{filename}',
     handler: function (request, reply) {
 
         var modname = request.params.modname,
@@ -41,17 +42,22 @@ server.route({
 
 });
 
-// root path
+// main index
 server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
 
-        eData = {};
+        eData = {
+
+            title: 'Angular Demos',
+            layout: 'home'
+
+        };
 
         ejs.renderFile(
 
-            './ejs/layout.ejs',
+            './ejs/index.ejs',
 
             eData,
 
@@ -61,9 +67,49 @@ server.route({
 
                 reply(e);
 
+            } else {
+
+                reply(html);
+
             }
 
-            reply(html);
+        });
+
+    }
+
+});
+
+server.route({
+
+    method: 'GET',
+    path: '/demos/{demoname}',
+    handler: function (request, reply) {
+
+        eData = {
+
+            title: 'Angular demo',
+            layout: 'demo',
+			demoName : request.params.demoname
+
+        };
+
+        ejs.renderFile(
+
+            './ejs/index.ejs',
+
+            eData,
+
+            function (e, html) {
+
+            if (e) {
+
+                reply(e);
+
+            } else {
+
+                reply(html);
+
+            }
 
         });
 
