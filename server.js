@@ -1,4 +1,5 @@
 var Hapi = require('hapi'),
+fs = require('fs'),
 ejs = require('ejs');
 
 // create a new instance of hapi server
@@ -11,69 +12,64 @@ server.connection({
     host: 'localhost'
 });
 
-// set a route
 server.route({
+
     method: 'GET',
-    path: '/',
+    path: '/js/{modname}/{filename}',
     handler: function (request, reply) {
 
-        ejs.renderFile(
+        var modname = request.params.modname,
+        filename = request.params.filename,
+        path = './node_modules/' + modname + '/' + filename;
 
-            './ejs/index.ejs',
+        // attempt to get the file
+        fs.readFile(path, 'utf-8', function (e, data) {
 
-            eData,
+            if (e) {
 
-            function (e, html) {
+                reply('// error with ' + path + ' : ' + e);
 
-                reply(html);
+            } else {
+
+                reply(data).type('text');
 
             }
 
-        );
+        });
 
     }
 
 });
 
-/*
-// register plug ins
-server.register(
-
-// I could just have the one object, but yes
-// I can also pass an array of objects for each plugin I
-// am using
-[
-
-// inert plug in{
-register : require('inert')
-
-}
-],
-
-// callback
-function (err) {
-
-if (err) {
-throw err;
-}
-
-// set a route
+// root path
 server.route({
-method : 'GET',
-path : '/{param*}',
-handler : {
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
 
-directory : {
-path : 'static-public'
-}
+        eData = {};
 
-}
+        ejs.renderFile(
+
+            './ejs/layout.ejs',
+
+            eData,
+
+            function (e, html) {
+
+            if (e) {
+
+                reply(e);
+
+            }
+
+            reply(html);
+
+        });
+
+    }
+
 });
-
-}
-
-);
- */
 
 // start the server
 server.start(function () {
