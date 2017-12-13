@@ -80,6 +80,7 @@ server.route({
 
 });
 
+// demos folder
 server.route({
 
     method: 'GET',
@@ -94,6 +95,7 @@ server.route({
 
         };
 
+        // render the index.ejs of the demo folder
         ejs.renderFile(
 
             './ejs/index.ejs',
@@ -109,6 +111,35 @@ server.route({
             } else {
 
                 reply(html);
+
+            }
+
+        });
+
+    }
+
+});
+
+// demos folder
+server.route({
+
+    method: 'GET',
+    path: '/img/{filename}',
+    handler: function (request, h) {
+
+        fs.readFile('./img/' + request.params.filename, 'binary', function (e, img) {
+
+            if (e) {
+
+                h(e);
+
+            } else {
+
+                // works
+                // h(img).header('Content-type','image/png').encoding('binary');
+
+                // works
+                h(img).encoding('binary').type('image/png');
 
             }
 
