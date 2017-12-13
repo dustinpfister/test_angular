@@ -1,6 +1,8 @@
 var Hapi = require('hapi'),
 fs = require('fs'),
-ejs = require('ejs');
+ejs = require('ejs'),
+
+ejsApi = require('./api-ejs');
 
 // create a new instance of hapi server
 var server = new Hapi.Server();
@@ -55,6 +57,8 @@ server.route({
             layout: 'home'
 
         };
+		
+		ejsApi.merge(eData);
 
         ejs.renderFile(
 
