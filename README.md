@@ -62,7 +62,22 @@ angular.js is loaded in the demo.ejs file in the layouts folder at /ejs/layouts,
 
 I have made my own api of methods and properties that can be used when making my ejs templates.
 
-### demoList
+
+## EJS API Properties
+
+here are the properties that can be used in ejs templates
+
+* title - the title for the current page
+* layout - the current layout (home or demo page)
+* demoname - the name of the current demo in /ejs/demos ( '' if home layout)
+* files -  a list of all demonames
+* readme - the parsed markdown of the current readme file
+
+## EJS API Methods
+
+There are some methods that can be called from ejs templates.
+
+### demoList 
 
 This method is just used on the home layout at /ejs/layouts/home.ejs to render an unordered list of links to each demo that appears in /ejs/demos. This method just saves me a little time compared to manually maintaining the list.
 
