@@ -6,9 +6,10 @@ This is an api I made to use for all my ejs files
 
  */
 
-let fs = require('fs');
+let fs = require('fs'),
+marked = require('marked'),
 
-let api = {};
+api = {};
 
 // simple test
 api.foo = function () {
@@ -104,7 +105,7 @@ let addReadMe = function (eData) {
 
                 } else {
 
-                    eData.readme = data;
+                    eData.readme = marked(data);
 
                     resolve(eData);
 
