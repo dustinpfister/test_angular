@@ -50,7 +50,7 @@ server.route({
 
         eData = {
 
-            title: 'Angular Demos',
+            title: 'Angular Demos - Home',
             layout: 'home'
 
         };
@@ -87,7 +87,7 @@ server.route({
 
         eData = {
 
-            title: 'Angular demo',
+            title: 'Angular demo - ' + request.params.demoname,
             layout: 'demo',
             demoName: request.params.demoname
 
