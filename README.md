@@ -21,7 +21,9 @@ The process is basically like this.
 
 * Create a folder in the /ejs/demos folder and give it a name such as 'test', so you have a path such as /ejs/demos/test
 
-* Have at least an index.ejs file in the folder of the demo at /ejs/demos/test/index.ejs this index.ejs file will contain the html of the demo.
+* Have an index.ejs file in the folder of the demo at /ejs/demos/test/index.ejs this index.ejs file will contain the html of the demo.
+
+* Have an jsfiles.ejs file at /ejs/demos/test/jsfiles.ejs this can contain links to jsfiles in the js folder of the project, and or script tags.
 
 * It is also possible to have a js folder for something like test.js at /ejs/demos/test/js/test.js if it is preferred to having the javaScript in the index.ejs file.
 
@@ -35,7 +37,11 @@ As such the index.ejs file of my 'first' demo looks like this:
         <h1>{{greeting}}</h1>
     </div>
 </div>
- 
+```
+
+and my jsfiles.ejs looks like this:
+
+```ejs
 <%- js('first.js') %>
 ```
 
