@@ -93,25 +93,33 @@ let addReadMe = function (eData) {
 
     return new Promise(function (resolve, reject) {
 
-        let path = 'README.md'
+        // default to home readme
+        let path = 'README.md';
 
-            fs.readFile(path, 'utf-8', function (e, data) {
+        // if demo layout, try to get that readme
+        if (eData.layout === 'demo') {
 
-                if (e) {
+            path = './ejs/demos/' + eData.demoname + '/README.md';
 
-                    eData.readme = '';
+        }
 
-                    reject(e);
+        fs.readFile(path, 'utf-8', function (e, data) {
 
-                } else {
+            if (e) {
 
-                    eData.readme = marked(data);
+                eData.readme = '';
 
-                    resolve(eData);
+                reject(e);
 
-                }
+            } else {
 
-            });
+                eData.readme = marked(data);
+
+                resolve(eData);
+
+            }
+
+        });
 
     });
 
