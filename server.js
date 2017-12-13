@@ -89,7 +89,7 @@ server.route({
 
             title: 'Angular demo',
             layout: 'demo',
-			demoName : request.params.demoname
+            demoName: request.params.demoname
 
         };
 
@@ -120,6 +120,8 @@ server.route({
 // start the server
 server.start(function () {
 
-    console.log('hapi server up: ');
+    console.log('Angular demos hapi project is up: ');
+    console.log('port: ' + server.info.port + '; host: ' + server.info.host);
+    console.log('open in browser: ' + server.info.uri);
 
 });
