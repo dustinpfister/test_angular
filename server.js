@@ -2,7 +2,7 @@ var Hapi = require('hapi'),
 fs = require('fs'),
 ejs = require('ejs'),
 
-ejsApi = require('./api-ejs');
+APIEJS = require('./api-ejs');
 
 // create a new instance of hapi server
 var server = new Hapi.Server();
@@ -49,6 +49,47 @@ server.route({
 server.route({
     method: 'GET',
     path: '/',
+    /*
+    handler: function (request, reply) {
+
+    eData = ejsApi.merge({
+
+    title: 'Angular Demos - Home',
+    layout: 'home'
+
+    }).then(function (eData) {
+
+    //ejsApi.merge(eData);
+
+    ejs.renderFile(
+
+    './ejs/index.ejs',{},
+
+    function (e, html) {
+
+    if (e) {
+
+    reply(e);
+
+    } else {
+
+    reply(html);
+
+    }
+
+    });
+
+    }).catch (function (e) {
+
+    console.log('error with api.');
+
+    reply(e);
+
+    });
+
+    }
+     */
+
     handler: function (request, reply) {
 
         eData = {
@@ -57,29 +98,63 @@ server.route({
             layout: 'home'
 
         };
-		
-		ejsApi.merge(eData);
 
-        ejs.renderFile(
+        //ejsApi.merge(eData);
 
-            './ejs/index.ejs',
+        APIEJS.merge(eData).then(function (eData) {
 
-            eData,
+            console.log('okay');
 
-            function (e, html) {
+            console.log(eData);
 
-            if (e) {
+            ejs.renderFile(
 
-                reply(e);
+                './ejs/index.ejs',
 
-            } else {
+                eData,
 
-                reply(html);
+                function (e, html) {
 
-            }
+                if (e) {
+
+                    reply(e);
+
+                } else {
+
+                    reply(html);
+
+                }
+
+            });
+
+        }).catch (function (e) {
+
+		    // if there is some kind of problem with apiEjs.merge
+            reply(e);
 
         });
 
+        /*
+        ejs.renderFile(
+
+        './ejs/index.ejs',
+
+        eData,
+
+        function (e, html) {
+
+        if (e) {
+
+        reply(e);
+
+        } else {
+
+        reply(html);
+
+        }
+
+        });
+         */
     }
 
 });
