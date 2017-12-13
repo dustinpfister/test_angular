@@ -12,7 +12,8 @@ server.connection({
     host: 'localhost'
 });
 
-// JavaScript path
+// lib path is for getting a certain client side js file
+// that is in the node_modules folder.
 server.route({
 
     method: 'GET',
@@ -112,6 +113,19 @@ server.route({
             }
 
         });
+
+    }
+
+});
+
+// get demos *.js files
+server.route({
+
+    method: 'GET',
+    path: '/demos/{demoname}/js/{filename}',
+    handler: function (request, reply) {
+
+        reply(request.params);
 
     }
 
