@@ -62,7 +62,7 @@ api.demosList = function () {
 
 // async helpers
 
-// add files property to eData
+// add files property to the eData object
 let addFiles = function (eData) {
 
     return new Promise(function (resolve, reject) {
@@ -87,8 +87,45 @@ let addFiles = function (eData) {
 
 };
 
-// add all methods from api
-let addMethods = function () {};
+// add any readme data to the eData object
+let addReadMe = function (eData) {
+
+    return new Promise(function (resolve, reject) {
+
+        let path = 'README.md'
+
+            fs.readFile(path, 'utf-8', function (e, data) {
+
+                if (e) {
+
+                    eData.readme = '';
+
+                    reject(e);
+
+                } else {
+
+                    eData.readme = data;
+
+                    resolve(eData);
+
+                }
+
+            });
+
+    });
+
+};
+
+// add all methods from api to the eData object
+let addMethods = function (eData) {
+
+    for (let method in api) {
+
+        eData[method] = api[method].bind(eData);
+
+    }
+
+};
 
 // merge the api into the given data object that will be used with ejs.renderFile
 exports.merge = function (eData) {
@@ -99,13 +136,26 @@ exports.merge = function (eData) {
         // add files
         addFiles(eData).then(function (eData) {
 
-            for (let method in api) {
-
-                eData[method] = api[method].bind(eData);
-
-            }
+            /*
+            addMethods(eData);
 
             resolve(eData);
+             */
+
+            // add readMe
+            addReadMe(eData).then(function () {
+
+                addMethods(eData);
+
+                resolve(eData);
+
+            }).catch (function (e) {
+
+                addMethods(eData);
+
+                resolve(eData);
+
+            });
 
         }).catch (function (e) {
 
