@@ -1,4 +1,5 @@
-angular.module('HelloWorldApp', [])
-   .controller('HelloWorldController', function($scope) {
-       $scope.greeting = "Hello World";
+var app = angular.module('first', []);
+
+app.controller('control', function($scope) {
+       $scope.greeting = 'Hello World';
 });
