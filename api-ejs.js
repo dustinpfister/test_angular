@@ -136,41 +136,45 @@ let addMethods = function (eData) {
 
 };
 
+// just give what we have as a promise
+let giveAsPromise = function (eData) {
+
+    return new Promise(function (resolve) {
+
+        resolve(eData);
+
+    });
+
+};
+
 // merge the api into the given data object that will be used with ejs.renderFile
 exports.merge = function (eData) {
 
-    // return a promise
-    return new Promise(function (resolve, reject) {
+    // add files
+    return addFiles(eData)
 
-        // add files
-        addFiles(eData).then(function (eData) {
+    // then add readme
+    .then(function (eData) {
 
-            /*
-            addMethods(eData);
+        return addReadMe(eData);
 
-            resolve(eData);
-             */
+    })
 
-            // add readMe
-            addReadMe(eData).then(function () {
+    // then add methods
+    .then(function (eData) {
 
-                addMethods(eData);
+        addMethods(eData);
 
-                resolve(eData);
+        return giveAsPromise(eData);
 
-            }).catch (function (e) {
+    })
 
-                addMethods(eData);
+    // catch
+    .catch (function (e) {
 
-                resolve(eData);
+        addMethods(eData);
 
-            });
-
-        }).catch (function (e) {
-
-            reject(e);
-
-        });
+        return giveAsPromise(eData);
 
     });
 
