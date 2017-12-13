@@ -125,7 +125,22 @@ server.route({
     path: '/demos/{demoname}/js/{filename}',
     handler: function (request, reply) {
 
-        reply(request.params);
+        var path = './ejs/demos/' + request.params.demoname + '/js/' + request.params.filename;
+
+        // attempt to get the file
+        fs.readFile(path, 'utf-8', function (e, data) {
+
+            if (e) {
+
+                reply(e);
+
+            } else {
+
+                reply(data).type('text');
+
+            }
+
+        });
 
     }
 
