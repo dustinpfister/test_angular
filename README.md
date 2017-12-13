@@ -36,8 +36,10 @@ As such the index.ejs file of my 'first' demo looks like this:
     </div>
 </div>
  
-<script src="first/js/first.js"></script>
+<%- js('first.js') %>
 ```
+
+I can use my js method of the ejs api I have made to grab any */js file that is in the current demo folder.
 
 And the first.js file at /ejs/demos/first/first.js looks like this:
 
@@ -49,3 +51,25 @@ angular.module('HelloWorldApp', [])
 ```
 
 angular.js is loaded in the demo.ejs file in the layouts folder at /ejs/layouts, at the time of this writing I am just using angular 1.6.7 with no plains of supporting more that one version.
+
+## EJS API
+
+I have made my own api of methods and properties that can be used when making my ejs templates.
+
+### demoList
+
+This method is just used on the home layout at /ejs/layouts/home.ejs to render an unordered list of links to each demo that appears in /ejs/demos. This method just saves me a little time compared to manually maintaining the list.
+
+```ejs
+<%- demosList() %>
+```
+
+### js
+
+The js method will inject a script tag for a given js file that is in the js folder of the current demo at /ejs/[demoname]/js/[filename].
+
+```ejs
+<%- js('main.js') %>
+```
+
+will give me what is at /ejs/demos/foo/js/main.js for a current demo named 'foo'

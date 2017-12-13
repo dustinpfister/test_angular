@@ -55,7 +55,8 @@ server.route({
         eData = {
 
             title: 'Angular Demos - Home',
-            layout: 'home'
+            layout: 'home',
+            demoname: ''  // empty string for the current demo name for now
 
         };
 
