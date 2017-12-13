@@ -60,8 +60,10 @@ api.demosList = function () {
 
 };
 
-// merge the api into the given data object that will be used with ejs.renderFile
-exports.merge = function (data) {
+// async helpers
+
+// add files property to eData
+let addFiles = function (eData) {
 
     return new Promise(function (resolve, reject) {
 
@@ -73,17 +75,41 @@ exports.merge = function (data) {
 
             } else {
 
-                data.files = files;
+                eData.files = files;
 
-                for (let method in api) {
-
-                    data[method] = api[method].bind(data);
-
-                }
-
-                resolve(data);
+                resolve(eData);
 
             }
+
+        });
+
+    });
+
+};
+
+// add all methods from api
+let addMethods = function () {};
+
+// merge the api into the given data object that will be used with ejs.renderFile
+exports.merge = function (eData) {
+
+    // return a promise
+    return new Promise(function (resolve, reject) {
+
+        // add files
+        addFiles(eData).then(function (eData) {
+
+            for (let method in api) {
+
+                eData[method] = api[method].bind(eData);
+
+            }
+
+            resolve(eData);
+
+        }).catch (function (e) {
+
+            reject(e);
 
         });
 
