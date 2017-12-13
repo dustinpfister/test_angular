@@ -1,8 +1,6 @@
 # First angular demo
 
-This is my first angular demo for my [test_angular](https://github.com/dustinpfister/test_angular) project
-
-In this project I am presenting just a simple angular hello world example.
+This is my first angular demo for my [test_angular](https://github.com/dustinpfister/test_angular) project. In this project I am presenting just a simple angular hello world example.
 
 ## html
 ```html
