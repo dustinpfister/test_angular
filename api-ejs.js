@@ -36,40 +36,27 @@ api.info = function () {
 
 };
 
+// render a script tage for the current demo
+api.js = function (filename) {
+
+    return '<script src=\"/demos/' + this.demoname + '/js/' + filename + '\" ></script>';
+
+	//return '';
+	
+};
+
+// render a demos list (used on main index)
 api.demosList = function () {
 
     let html = '<div class="list"><h2>Demos list<\/h2><ul>';
 
     this.files.forEach(function (demoname) {
 
-        html += '<li><a href=\"/demos/'+demoname+'\">' + demoname + '<\/a><\/li>'
+        html += '<li><a href=\"/demos/' + demoname + '\">' + demoname + '<\/a><\/li>'
 
     });
 
     return html + '<\/ul><\/div>';
-
-    /*
-    var html = '<ul>';
-
-    return fs.readdir('./ejs/demos', function (e, files) {
-
-    if (e) {
-
-    html += '<li>' + e + '<\/li>';
-
-    } else {
-
-    html += '<li>okay<\/li>';
-
-    }
-
-    console.log(e);
-    console.log(files);
-
-    return html + '<\/ul>';
-
-    });
-     */
 
 };
 
@@ -103,16 +90,3 @@ exports.merge = function (data) {
     });
 
 };
-
-/*
-// merge the api into the given data object that will be used with ejs.renderFile
-exports.merge = function (data) {
-
-for (let method in api) {
-
-data[method] = api[method].bind(data);
-
-}
-
-};
-*/

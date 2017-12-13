@@ -1,6 +1,6 @@
-<h1>Angular Demo - <%= eData.demoName %></h1>
+<h1>Angular Demo - <%= eData.demoname || 'untitled' %></h1>
 
 <!-- get angular-->
 <script src="/lib/angular/angular.js"></script>
 
-<%- include('../demos/'+eData.demoName + '/index.ejs',eData ) %>
+<%- include('../demos/'+eData.demoname + '/index.ejs',eData ) %>

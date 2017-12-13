@@ -49,46 +49,6 @@ server.route({
 server.route({
     method: 'GET',
     path: '/',
-    /*
-    handler: function (request, reply) {
-
-    eData = ejsApi.merge({
-
-    title: 'Angular Demos - Home',
-    layout: 'home'
-
-    }).then(function (eData) {
-
-    //ejsApi.merge(eData);
-
-    ejs.renderFile(
-
-    './ejs/index.ejs',{},
-
-    function (e, html) {
-
-    if (e) {
-
-    reply(e);
-
-    } else {
-
-    reply(html);
-
-    }
-
-    });
-
-    }).catch (function (e) {
-
-    console.log('error with api.');
-
-    reply(e);
-
-    });
-
-    }
-     */
 
     handler: function (request, reply) {
 
@@ -129,32 +89,11 @@ server.route({
 
         }).catch (function (e) {
 
-		    // if there is some kind of problem with apiEjs.merge
+            // if there is some kind of problem with apiEjs.merge
             reply(e);
 
         });
 
-        /*
-        ejs.renderFile(
-
-        './ejs/index.ejs',
-
-        eData,
-
-        function (e, html) {
-
-        if (e) {
-
-        reply(e);
-
-        } else {
-
-        reply(html);
-
-        }
-
-        });
-         */
     }
 
 });
@@ -170,30 +109,38 @@ server.route({
 
             title: 'Angular demo - ' + request.params.demoname,
             layout: 'demo',
-            demoName: request.params.demoname
+            demoname: request.params.demoname
 
         };
 
-        // render the index.ejs of the demo folder
-        ejs.renderFile(
+        APIEJS.merge(eData).then(function (eData) {
 
-            './ejs/index.ejs',
+            // render the index.ejs of the demo folder
+            ejs.renderFile(
 
-            eData,
+                './ejs/index.ejs',
 
-            function (e, html) {
+                eData,
 
-            if (e) {
+                function (e, html) {
 
-                reply(e);
+                if (e) {
 
-            } else {
+                    reply(e);
 
-                reply(html);
+                } else {
 
-            }
+                    reply(html);
 
-        });
+                }
+
+            });
+
+        }).catch (function (e) {
+
+            reply(e);
+
+        })
 
     }
 
