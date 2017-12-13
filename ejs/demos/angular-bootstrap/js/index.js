@@ -7,5 +7,3 @@ angular.module('two', []).controller('control', function($scope) {
 });
 
 angular.bootstrap(document.getElementById('two'),['two']);
-
-console.log(angular);
