@@ -14,10 +14,9 @@ server.connection({
     host: 'localhost'
 });
 
-
 /********* ********* ********* *********
-    lib (node_modules)
-********* ********* ********* *********/
+lib (node_modules)
+ ********* ********* ********* *********/
 
 // lib path is for getting a certain client side js file
 // that is in the node_modules folder.
@@ -50,10 +49,9 @@ server.route({
 
 });
 
-
 /********* ********* ********* *********
-    Home /
-********* ********* ********* *********/
+Home /
+ ********* ********* ********* *********/
 
 // main index
 server.route({
@@ -103,10 +101,9 @@ server.route({
 
 });
 
-
 /********* ********* ********* *********
-    Images
-********* ********* ********* *********/
+Images
+ ********* ********* ********* *********/
 
 // images path
 server.route({
@@ -138,10 +135,57 @@ server.route({
 });
 
 /********* ********* ********* *********
-    Demos
-********* ********* ********* *********/
+Demos
+ ********* ********* ********* *********/
 
-// demos folder
+server.route({
+
+    method: 'GET',
+    path: '/demos',
+    handler: function (request, reply) {
+
+        eData = {
+
+            title: 'Angular demo - ' + request.params.demoname,
+            layout: 'home',
+            demoname: ''
+
+        };
+
+        APIEJS.merge(eData).then(function (eData) {
+
+            // render the index.ejs of the demo folder
+            ejs.renderFile(
+
+                './ejs/index.ejs',
+
+                eData,
+
+                function (e, html) {
+
+                if (e) {
+
+                    reply(e);
+
+                } else {
+
+                    reply(html);
+
+                }
+
+            });
+
+        }).catch (function (e) {
+
+            reply(e);
+
+        });
+
+    }
+
+});
+
+// demos folder for a certian demo
 server.route({
 
     method: 'GET',
@@ -217,10 +261,9 @@ server.route({
 
 });
 
-
 /********* ********* ********* *********
-    Back End
-********* ********* ********* *********/
+Back End
+ ********* ********* ********* *********/
 
 // back end scripts GET
 server.route({
