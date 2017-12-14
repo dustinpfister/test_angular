@@ -95,7 +95,17 @@ The js method will inject a script tag for a given js file that is in the js fol
 
 will give me what is at /ejs/demos/foo/js/main.js for a current demo named 'foo'
 
-## Future Ideas
+## Features
+
+### Demos index separate from home
+
+Have a condition for just /demos and not just /demos/[demoname] placing the index for all demos there at /demos freeing up home for something else.
+
+### Better site Navigation
+
+When I was first starting out there where only two paths to navigate to /demos/[demoname] and / that acts as an index of the demos. Sense then I now have a /demos path that gives the index of demos, and a github link in a nav.ejs part file that makes up all pages on the site.
+
+## Future Ideas For Features
 
 If my posts on angular do well, I will continue to support this project some of the ideas I have listed here I might not ever get to if people show little interest in my sites analytics.
 
@@ -103,21 +113,21 @@ If my posts on angular do well, I will continue to support this project some of 
 
 As of this writing test_angular just used angular 1.6.7. As such I might add a special path for many versions of angular, as well as possibly other front end dependences. The current lib path is a crud way of just grabbing at something that may be in the root path of a node module in node_modules.
 
-### demo.json files
+### demo.json / demo.yaml files
 
-I might want to have a demo.json file for each demo. This would contain information such as a description that will be displayed in the home page. It can also be used to declare the version of angular to use, as well as any other relevant information about a demo.
+I might want to have a demo.json file for each demo. This would contain information such as a description that will be displayed in the home page. It can also be used to declare the version of angular to use, as well as any other relevant information about a demo. I might also make them yaml files rather than the usual json.
 
-### Better site Navigation
+### Demo types
 
-There are currently only two paths to navigate to /demos/[demoname] and / that acts as an index of the demos. Still a consistent navigation par at the top might be nice.
+Each demo can have a type that defaults to 'misc'. This might be on eof mnay values for the demo.json file if it is made.
+
+### Demo Sorting
+
+The index at /demos might just display all demos, but I could at least sort them in some way other than what just happens without caring about order. I might want things broken down in some way if the list grows pretty long.
 
 ### Games section
 
-If I get more into making simple html only style games with angular it might be a good idea to have a section for them instead of placing them along with the demos.
-
-### Demos index separate from home
-
-Have a condition for just /demos and not just /demos/[demoname] placing the index for all demos there at /demos freeing up home for something else.
+I was getting into making this project simply for the sake of getting into angular because it is just something to write about on my blog. It would be nice to also make this project just my pet project of sorts that I am doing purely for the sake of fun as well. If I get more into making simple html only style games with angular it might be a good idea to have a section for them instead of placing them along with the demos.
 
 ### 404 page
 
