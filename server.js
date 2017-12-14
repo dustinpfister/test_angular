@@ -64,7 +64,7 @@ server.route({
 
             title: 'Angular Demos - Home',
             layout: 'home',
-            demoname: '' // empty string for the current demo name for now
+            name: '' // empty string for the current demo name for now
 
         };
 
@@ -148,7 +148,7 @@ server.route({
 
             title: 'Angular demo - ' + request.params.demoname,
             layout: 'demo_index',
-            demoname: ''
+            name: ''
 
         };
 
@@ -189,14 +189,15 @@ server.route({
 server.route({
 
     method: 'GET',
-    path: '/demos/{demoname}',
+    path: '/demos/{name}',
     handler: function (request, reply) {
 
         eData = {
 
-            title: 'Angular demo - ' + request.params.demoname,
+            title: 'Angular demo - ' + request.params.name,
             layout: 'demo',
-            demoname: request.params.demoname
+            //demoname: request.params.demoname
+name: request.params.name
 
         };
 
@@ -237,10 +238,10 @@ server.route({
 server.route({
 
     method: 'GET',
-    path: '/demos/{demoname}/js/{filename}',
+    path: '/demos/{name}/js/{filename}',
     handler: function (request, reply) {
 
-        var path = './ejs/demos/' + request.params.demoname + '/js/' + request.params.filename;
+        var path = './ejs/demos/' + request.params.name + '/js/' + request.params.filename;
 
         // attempt to get the file
         fs.readFile(path, 'utf-8', function (e, data) {
@@ -325,7 +326,7 @@ server.route({
 
             title: 'Angular game - ' + request.params.name,
             layout: 'game',
-            demoname: request.params.name
+            name: request.params.name
 
         };
 

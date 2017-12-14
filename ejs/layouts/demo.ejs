@@ -1,10 +1,10 @@
 
 <div class="wrap-demo-index">
 
-    <h1>Angular Demo - <%= eData.demoname || 'untitled' %></h1>
+    <h1>Angular Demo - <%= eData.name || 'untitled' %></h1>
 
 
-    <%- include('../demos/'+eData.demoname + '/index.ejs',eData ) %>
+    <%- include('../demos/'+eData.name + '/index.ejs',eData ) %>
 
 </div>
 
@@ -16,4 +16,4 @@
 
 <!-- get angular-->
 <script src="/lib/angular/angular.js"></script>
-<%- include('../demos/'+eData.demoname + '/jsfiles.ejs',eData ) %>
+<%- include('../demos/'+eData.name + '/jsfiles.ejs',eData ) %>

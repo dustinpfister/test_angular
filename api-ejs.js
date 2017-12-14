@@ -40,7 +40,7 @@ api.info = function () {
 // render a script tage for the current demo
 api.js = function (filename) {
 
-    return '<script src=\"/demos/' + this.demoname + '/js/' + filename + '\" ></script>';
+    return '<script src=\"/demos/' + this.name + '/js/' + filename + '\" ></script>';
 
     //return '';
 
@@ -51,9 +51,9 @@ api.demosList = function () {
 
     let html = '<div class="list"><h2>Demos list<\/h2><ul>';
 
-    this.files.forEach(function (demoname) {
+    this.files.forEach(function (name) {
 
-        html += '<li><a href=\"/demos/' + demoname + '\">' + demoname + '<\/a><\/li>'
+        html += '<li><a href=\"/demos/' + name + '\">' + name + '<\/a><\/li>'
 
     });
 
@@ -99,7 +99,7 @@ let addReadMe = function (eData) {
         // if demo layout, try to get that readme
         if (eData.layout === 'demo') {
 
-            path = './ejs/demos/' + eData.demoname + '/README.md';
+            path = './ejs/demos/' + eData.name + '/README.md';
 
         }
 
