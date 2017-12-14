@@ -204,11 +204,33 @@ server.route({
 
 });
 
-// backend scripts
-// get demos *.js files
+// backend scripts GET
 server.route({
 
     method: 'GET',
+    path: '/back/{script}',
+    handler: function (request, reply) {
+
+        var script = request.params.script;
+
+        try {
+
+            require('./backends/' + script + '.js').reply(request, reply);
+
+        } catch (e) {
+
+            reply(e);
+
+        }
+
+    }
+
+});
+
+// backend scripts GET
+server.route({
+
+    method: 'POST',
     path: '/back/{script}',
     handler: function (request, reply) {
 
