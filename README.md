@@ -114,3 +114,15 @@ There are currently only two paths to navigate to /demos/[demoname] and / that a
 ### Games section
 
 If I get more into making simple html only style games with angular it might be a good idea to have a section for them instead of placing them along with the demos.
+
+### Demos index separate from home
+
+Have a condition for just /demos and not just /demos/[demoname] placing the index for all demos there at /demos freeing up home for something else.
+
+### 404 page
+
+A custom 404 page for the project.
+
+### /css path
+
+I currently just have hard coded styles in the main index.ejs
