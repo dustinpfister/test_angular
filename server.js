@@ -138,6 +138,7 @@ server.route({
 Demos
  ********* ********* ********* *********/
 
+// main demo index path
 server.route({
 
     method: 'GET',
@@ -146,7 +147,7 @@ server.route({
 
         eData = {
 
-            title: 'Angular demo - ' + request.params.demoname,
+            title: 'Angular demo - ' + request.params.name,
             layout: 'demo_index',
             name: ''
 
@@ -314,6 +315,55 @@ server.route({
 /********* ********* ********* *********
 games
  ********* ********* ********* *********/
+// main games index path
+server.route({
+
+    method: 'GET',
+    path: '/games',
+    handler: function (request, reply) {
+
+        eData = {
+
+            title: 'Angular games',
+            layout: 'game_index',
+            name: ''
+
+        };
+
+        APIEJS.merge(eData).then(function (eData) {
+
+            // render the index.ejs of the demo folder
+            ejs.renderFile(
+
+                './ejs/index.ejs',
+
+                eData,
+
+                function (e, html) {
+
+                if (e) {
+
+                    reply(e);
+
+                } else {
+
+                    reply(html);
+
+                }
+
+            });
+
+        }).catch (function (e) {
+
+            reply(e);
+
+        });
+
+    }
+
+});
+
+ 
 // get a certain game
 server.route({
 
@@ -362,7 +412,7 @@ server.route({
 
 });
 
-// Demos *.js files path
+// games *.js files path
 server.route({
 
     method: 'GET',
