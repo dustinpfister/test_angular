@@ -147,7 +147,7 @@ server.route({
         eData = {
 
             title: 'Angular demo - ' + request.params.demoname,
-            layout: 'home',
+            layout: 'demo_index',
             demoname: ''
 
         };
