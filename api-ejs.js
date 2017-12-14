@@ -40,7 +40,7 @@ api.info = function () {
 // render a script tage for the current demo
 api.js = function (filename) {
 
-    return '<script src=\"/'+this.layout+'s/' + this.name + '/js/' + filename + '\" ></script>';
+    return '<script src=\"/' + this.layout + 's/' + this.name + '/js/' + filename + '\" ></script>';
 
     //return '';
 
@@ -51,9 +51,24 @@ api.demosList = function () {
 
     let html = '<div class="list"><h2>Demos list<\/h2><ul>';
 
-    this.files.forEach(function (name) {
+    this.demos.forEach(function (name) {
 
         html += '<li><a href=\"/demos/' + name + '\">' + name + '<\/a><\/li>'
+
+    });
+
+    return html + '<\/ul><\/div>';
+
+};
+
+// render a demos list (used on main index)
+api.gamesList = function () {
+
+    let html = '<div class="list"><h2>Games list<\/h2><ul>';
+
+    this.games.forEach(function (name) {
+
+        html += '<li><a href=\"/games/' + name + '\">' + name + '<\/a><\/li>'
 
     });
 
@@ -76,11 +91,33 @@ let addFiles = function (eData) {
 
             } else {
 
-                eData.files = files;
+                eData.demos = files;
 
                 resolve(eData);
 
             }
+
+        });
+
+    }).then(function (eData) {
+
+        return new Promise(function (resolve, reject) {
+
+            fs.readdir('./ejs/games', function (e, files) {
+
+                if (e) {
+
+                    reject(e);
+
+                } else {
+
+                    eData.games = files;
+
+                    resolve(eData);
+
+                }
+
+            });
 
         });
 
@@ -99,7 +136,7 @@ let addReadMe = function (eData) {
         // if demo layout, try to get that readme
         if (eData.layout != 'home') {
 
-            path = './ejs/'+eData.layout+'s/' + eData.name + '/README.md';
+            path = './ejs/' + eData.layout + 's/' + eData.name + '/README.md';
 
         }
 
