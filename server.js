@@ -23,8 +23,6 @@ var widthIndex = function (eData, request, reply) {
 
             if (e) {
 
-                console.log(e);
-
                 reply(e);
 
             } else {
@@ -96,21 +94,11 @@ server.route({
 
     handler: function (request, reply) {
 
-        /*
-        eData = {
-
-        title: 'Angular Demos - Home',
-        layout: 'home',
-        name: '' // empty string for the current demo name for now
-
-        };
-		*/
-         
         widthIndex({
 
-        title: 'Angular Demos - Home',
-        layout: 'home',
-        name: '' // empty string for the current demo name for now
+            title: 'Angular Demos - Home',
+            layout: 'home',
+            name: '' // empty string for the current demo name for now
 
         }, request, reply);
 
@@ -162,15 +150,13 @@ server.route({
     path: '/demos',
     handler: function (request, reply) {
 
-        eData = {
+        widthIndex({
 
             title: 'Angular demo - ' + request.params.name,
             layout: 'demo_index',
             name: ''
 
-        };
-
-        widthIndex(eData, request, reply);
+        }, request, reply);
 
     }
 
@@ -183,15 +169,6 @@ server.route({
     path: '/demos/{name}',
     handler: function (request, reply) {
 
-	/*
-        eData = {
-
-            title: 'Angular demo - ' + request.params.name,
-            layout: 'demo',
-            name: request.params.name
-
-        };
-*/
         widthIndex({
 
             title: 'Angular demo - ' + request.params.name,
@@ -292,15 +269,13 @@ server.route({
     path: '/games',
     handler: function (request, reply) {
 
-        eData = {
+        widthIndex({
 
             title: 'Angular games',
             layout: 'game_index',
             name: ''
 
-        };
-
-        widthIndex(eData, request, reply);
+        }, request, reply);
 
     }
 
@@ -313,15 +288,13 @@ server.route({
     path: '/games/{name}',
     handler: function (request, reply) {
 
-        eData = {
+        widthIndex({
 
             title: 'Angular game - ' + request.params.name,
             layout: 'game',
             name: request.params.name
 
-        };
-
-        widthIndex(eData, request, reply);
+        }, request, reply);
     }
 
 });
