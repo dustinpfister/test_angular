@@ -97,9 +97,9 @@ let addReadMe = function (eData) {
         let path = 'README.md';
 
         // if demo layout, try to get that readme
-        if (eData.layout === 'demo') {
+        if (eData.layout != 'home') {
 
-            path = './ejs/demos/' + eData.name + '/README.md';
+            path = './ejs/'+eData.layout+'s/' + eData.name + '/README.md';
 
         }
 

@@ -1,3 +1,18 @@
 <div class="wrap-game-index">
-    <h1>Angular game - <%= name %></h1>
+
+    <h1>Angular Game - <%= name %></h1>
+
+
+    <%- include('../games/'+name + '/index.ejs') %>
+
 </div>
+
+<div class="wrap-game-readme">
+
+    <%- readme  %>
+
+</div>
+
+<!-- get angular-->
+<script src="/lib/angular/angular.js"></script>
+<%- include('../games/'+name + '/jsfiles.ejs') %>
