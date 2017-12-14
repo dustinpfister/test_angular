@@ -94,3 +94,23 @@ The js method will inject a script tag for a given js file that is in the js fol
 ```
 
 will give me what is at /ejs/demos/foo/js/main.js for a current demo named 'foo'
+
+## Future Ideas
+
+If my posts on angular do well, I will continue to support this project some of the ideas I have listed here I might not ever get to if people show little interest in my sites analytics.
+
+### Support for more than one version of angular
+
+As of this writing test_angular just used angular 1.6.7. As such I might add a special path for many versions of angular, as well as possibly other front end dependences. The current lib path is a crud way of just grabbing at something that may be in the root path of a node module in node_modules.
+
+### demo.json files
+
+I might want to have a demo.json file for each demo. This would contain information such as a description that will be displayed in the home page. It can also be used to declare the version of angular to use, as well as any other relevant information about a demo.
+
+### Better site Navigation
+
+There are currently only two paths to navigate to /demos/[demoname] and / that acts as an index of the demos. Still a consistent navigation par at the top might be nice.
+
+### Games section
+
+If I get more into making simple html only style games with angular it might be a good idea to have a section for them instead of placing them along with the demos.
