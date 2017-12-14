@@ -7,6 +7,40 @@ APIEJS = require('./api-ejs');
 // create a new instance of hapi server
 var server = new Hapi.Server();
 
+// with index helper
+var widthIndex = function (eData, request, reply) {
+
+    APIEJS.merge(eData).then(function (eData) {
+
+        // render the index.ejs of the demo folder
+        ejs.renderFile(
+
+            './ejs/index.ejs',
+
+            eData,
+
+            function (e, html) {
+
+            if (e) {
+
+                reply(e);
+
+            } else {
+
+                reply(html);
+
+            }
+
+        });
+
+    }).catch (function (e) {
+
+        reply(e);
+
+    });
+
+};
+
 // port 3000, and I will be using localhost
 // when running I will connect via http://localhost:3000
 server.connection({
@@ -68,34 +102,7 @@ server.route({
 
         };
 
-        APIEJS.merge(eData).then(function (eData) {
-
-            ejs.renderFile(
-
-                './ejs/index.ejs',
-
-                eData,
-
-                function (e, html) {
-
-                if (e) {
-
-                    reply(e);
-
-                } else {
-
-                    reply(html);
-
-                }
-
-            });
-
-        }).catch (function (e) {
-
-            // if there is some kind of problem with apiEjs.merge
-            reply(e);
-
-        });
+        widthIndex(eData, request, reply);
 
     }
 
@@ -153,34 +160,7 @@ server.route({
 
         };
 
-        APIEJS.merge(eData).then(function (eData) {
-
-            // render the index.ejs of the demo folder
-            ejs.renderFile(
-
-                './ejs/index.ejs',
-
-                eData,
-
-                function (e, html) {
-
-                if (e) {
-
-                    reply(e);
-
-                } else {
-
-                    reply(html);
-
-                }
-
-            });
-
-        }).catch (function (e) {
-
-            reply(e);
-
-        });
+        widthIndex(eData, request, reply);
 
     }
 
@@ -201,34 +181,7 @@ server.route({
 
         };
 
-        APIEJS.merge(eData).then(function (eData) {
-
-            // render the index.ejs of the demo folder
-            ejs.renderFile(
-
-                './ejs/index.ejs',
-
-                eData,
-
-                function (e, html) {
-
-                if (e) {
-
-                    reply(e);
-
-                } else {
-
-                    reply(html);
-
-                }
-
-            });
-
-        }).catch (function (e) {
-
-            reply(e);
-
-        });
+        widthIndex(eData, request, reply);
 
     }
 
@@ -330,40 +283,12 @@ server.route({
 
         };
 
-        APIEJS.merge(eData).then(function (eData) {
-
-            // render the index.ejs of the demo folder
-            ejs.renderFile(
-
-                './ejs/index.ejs',
-
-                eData,
-
-                function (e, html) {
-
-                if (e) {
-
-                    reply(e);
-
-                } else {
-
-                    reply(html);
-
-                }
-
-            });
-
-        }).catch (function (e) {
-
-            reply(e);
-
-        });
+        widthIndex(eData, request, reply);
 
     }
 
 });
 
- 
 // get a certain game
 server.route({
 
@@ -379,35 +304,7 @@ server.route({
 
         };
 
-        APIEJS.merge(eData).then(function (eData) {
-
-            // render the index.ejs of the demo folder
-            ejs.renderFile(
-
-                './ejs/index.ejs',
-
-                eData,
-
-                function (e, html) {
-
-                if (e) {
-
-                    reply(e);
-
-                } else {
-
-                    reply(html);
-
-                }
-
-            });
-
-        }).catch (function (e) {
-
-            reply(e);
-
-        });
-
+        widthIndex(eData, request, reply);
     }
 
 });
