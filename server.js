@@ -94,6 +94,7 @@ server.route({
 
     handler: function (request, reply) {
 
+
         eData = {
 
             title: 'Angular Demos - Home',
