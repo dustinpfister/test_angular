@@ -34,11 +34,12 @@ mkJson = function () {
 
                     // first
                     {
-
-                        mess: 'new json file made: ' + new Date()
+                        date: new Date(),
+                        mess: 'new json file made!'
 
                     }, {
 
+                        date: new Date(),
                         mess: 'these are hard coded on the server.'
 
                     }

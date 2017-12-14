@@ -4,16 +4,7 @@ app.controller('httpPostDemo', function ($scope, $http) {
     //$scope.mess = 'loading...';
 
     $scope.inputMess = 'Hello Post!';
-    $scope.messages = [
-
-        // hard coded message
-        {
-
-            mess: 'loading messages...'
-
-        }
-
-    ];
+    $scope.messages = [];
 
     $scope.get = function () {
 
@@ -58,8 +49,6 @@ app.controller('httpPostDemo', function ($scope, $http) {
 
     };
 
-    //$scope.send();
+    $scope.get();
 
-	$scope.get();
-	
 });
