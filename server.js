@@ -185,7 +185,7 @@ server.route({
 
 });
 
-// demos folder for a certian demo
+// demos folder for a certain demo
 server.route({
 
     method: 'GET',
@@ -310,6 +310,58 @@ server.route({
     }
 
 });
+
+/********* ********* ********* *********
+games
+ ********* ********* ********* *********/
+// get a certain game
+server.route({
+
+    method: 'GET',
+    path: '/games/{name}',
+    handler: function (request, reply) {
+
+        eData = {
+
+            title: 'Angular game - ' + request.params.name,
+            layout: 'game',
+            demoname: request.params.name
+
+        };
+
+        APIEJS.merge(eData).then(function (eData) {
+
+            // render the index.ejs of the demo folder
+            ejs.renderFile(
+
+                './ejs/index.ejs',
+
+                eData,
+
+                function (e, html) {
+
+                if (e) {
+
+                    reply(e);
+
+                } else {
+
+                    reply(html);
+
+                }
+
+            });
+
+        }).catch (function (e) {
+
+            reply(e);
+
+        });
+
+    }
+
+});
+
 
 // start the server
 server.start(function () {
