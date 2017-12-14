@@ -14,6 +14,11 @@ server.connection({
     host: 'localhost'
 });
 
+
+/********* ********* ********* *********
+    lib (node_modules)
+********* ********* ********* *********/
+
 // lib path is for getting a certain client side js file
 // that is in the node_modules folder.
 server.route({
@@ -45,6 +50,11 @@ server.route({
 
 });
 
+
+/********* ********* ********* *********
+    Home /
+********* ********* ********* *********/
+
 // main index
 server.route({
     method: 'GET',
@@ -60,13 +70,7 @@ server.route({
 
         };
 
-        //ejsApi.merge(eData);
-
         APIEJS.merge(eData).then(function (eData) {
-
-            console.log('okay');
-
-            console.log(eData);
 
             ejs.renderFile(
 
@@ -98,6 +102,44 @@ server.route({
     }
 
 });
+
+
+/********* ********* ********* *********
+    Images
+********* ********* ********* *********/
+
+// images path
+server.route({
+
+    method: 'GET',
+    path: '/img/{filename}',
+    handler: function (request, h) {
+
+        fs.readFile('./img/' + request.params.filename, 'binary', function (e, img) {
+
+            if (e) {
+
+                h(e);
+
+            } else {
+
+                // works
+                // h(img).header('Content-type','image/png').encoding('binary');
+
+                // works
+                h(img).encoding('binary').type('image/png');
+
+            }
+
+        });
+
+    }
+
+});
+
+/********* ********* ********* *********
+    Demos
+********* ********* ********* *********/
 
 // demos folder
 server.route({
@@ -141,42 +183,13 @@ server.route({
 
             reply(e);
 
-        })
-
-    }
-
-});
-
-// demos folder
-server.route({
-
-    method: 'GET',
-    path: '/img/{filename}',
-    handler: function (request, h) {
-
-        fs.readFile('./img/' + request.params.filename, 'binary', function (e, img) {
-
-            if (e) {
-
-                h(e);
-
-            } else {
-
-                // works
-                // h(img).header('Content-type','image/png').encoding('binary');
-
-                // works
-                h(img).encoding('binary').type('image/png');
-
-            }
-
         });
 
     }
 
 });
 
-// get demos *.js files
+// Demos *.js files path
 server.route({
 
     method: 'GET',
@@ -204,7 +217,12 @@ server.route({
 
 });
 
-// backend scripts GET
+
+/********* ********* ********* *********
+    Back End
+********* ********* ********* *********/
+
+// back end scripts GET
 server.route({
 
     method: 'GET',
@@ -227,7 +245,7 @@ server.route({
 
 });
 
-// backend scripts GET
+// back end scripts POST
 server.route({
 
     method: 'POST',
