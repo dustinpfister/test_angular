@@ -56,7 +56,7 @@ server.route({
 
             title: 'Angular Demos - Home',
             layout: 'home',
-            demoname: ''  // empty string for the current demo name for now
+            demoname: '' // empty string for the current demo name for now
 
         };
 
@@ -199,6 +199,30 @@ server.route({
             }
 
         });
+
+    }
+
+});
+
+// backend scripts
+// get demos *.js files
+server.route({
+
+    method: 'GET',
+    path: '/back/{script}',
+    handler: function (request, reply) {
+
+        var script = request.params.script;
+
+        try {
+
+            require('./backends/' + script + '.js').reply(request, reply);
+
+        } catch (e) {
+
+            reply(e);
+
+        }
 
     }
 
