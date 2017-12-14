@@ -3,6 +3,7 @@ var app = angular.module('httpPostMod', []);
 app.controller('httpPostDemo', function ($scope, $http) {
     //$scope.mess = 'loading...';
 
+    $scope.inputMess = 'Hello Post!';
     $scope.messages = [
 
         // hard coded message
@@ -36,7 +37,7 @@ app.controller('httpPostDemo', function ($scope, $http) {
     $scope.send = function () {
         $http.post('/back/messmaker', {
             action: 'post',
-            mess: 'ping!'
+            mess: $scope.inputMess
         }).then(function (res) {
 
             // if all goes well display the message
@@ -57,6 +58,8 @@ app.controller('httpPostDemo', function ($scope, $http) {
 
     };
 
-    $scope.send();
+    //$scope.send();
 
+	$scope.get();
+	
 });

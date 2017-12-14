@@ -2,7 +2,10 @@
 
     <ul ng-repeat="m in messages">
         <h3>date: {{m.date}}</h3>
-		<p>mess: {{m.mess}}</p>
+        <p>mess: {{m.mess}}</p>
     </ul>
+
+    <input type="text" ng-model="inputMess">
+    <button ng-click='send()'>Send</button>
 
 </div>
