@@ -196,8 +196,7 @@ server.route({
 
             title: 'Angular demo - ' + request.params.name,
             layout: 'demo',
-            //demoname: request.params.demoname
-name: request.params.name
+            name: request.params.name
 
         };
 
@@ -363,6 +362,33 @@ server.route({
 
 });
 
+// Demos *.js files path
+server.route({
+
+    method: 'GET',
+    path: '/games/{name}/js/{filename}',
+    handler: function (request, reply) {
+
+        var path = './ejs/games/' + request.params.name + '/js/' + request.params.filename;
+
+        // attempt to get the file
+        fs.readFile(path, 'utf-8', function (e, data) {
+
+            if (e) {
+
+                reply(e);
+
+            } else {
+
+                reply(data).type('text');
+
+            }
+
+        });
+
+    }
+
+});
 
 // start the server
 server.start(function () {

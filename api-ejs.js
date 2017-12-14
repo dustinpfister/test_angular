@@ -40,7 +40,7 @@ api.info = function () {
 // render a script tage for the current demo
 api.js = function (filename) {
 
-    return '<script src=\"/demos/' + this.name + '/js/' + filename + '\" ></script>';
+    return '<script src=\"/'+this.layout+'s/' + this.name + '/js/' + filename + '\" ></script>';
 
     //return '';
 
