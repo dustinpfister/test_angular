@@ -23,6 +23,8 @@ var widthIndex = function (eData, request, reply) {
 
             if (e) {
 
+                console.log(e);
+
                 reply(e);
 
             } else {
@@ -94,16 +96,23 @@ server.route({
 
     handler: function (request, reply) {
 
-
+        /*
         eData = {
 
-            title: 'Angular Demos - Home',
-            layout: 'home',
-            name: '' // empty string for the current demo name for now
+        title: 'Angular Demos - Home',
+        layout: 'home',
+        name: '' // empty string for the current demo name for now
 
         };
+		*/
+         
+        widthIndex({
 
-        widthIndex(eData, request, reply);
+        title: 'Angular Demos - Home',
+        layout: 'home',
+        name: '' // empty string for the current demo name for now
+
+        }, request, reply);
 
     }
 
@@ -174,6 +183,7 @@ server.route({
     path: '/demos/{name}',
     handler: function (request, reply) {
 
+	/*
         eData = {
 
             title: 'Angular demo - ' + request.params.name,
@@ -181,8 +191,14 @@ server.route({
             name: request.params.name
 
         };
+*/
+        widthIndex({
 
-        widthIndex(eData, request, reply);
+            title: 'Angular demo - ' + request.params.name,
+            layout: 'demo',
+            name: request.params.name
+
+        }, request, reply);
 
     }
 

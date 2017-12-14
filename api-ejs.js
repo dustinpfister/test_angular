@@ -150,6 +150,8 @@ let giveAsPromise = function (eData) {
 // merge the api into the given data object that will be used with ejs.renderFile
 exports.merge = function (eData) {
 
+    console.log(eData);
+
     // add files
     return addFiles(eData)
 

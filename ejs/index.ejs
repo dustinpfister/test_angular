@@ -46,9 +46,9 @@ a:hover{color:#ff0000;}
     </head>
     <body>
 
-       <%- include('part/header',eData) %>
+       <%- include('part/header',{additional:'yes'}) %>
 
-       <%- include('layouts/' + layout,eData) %>
+       <%- include('layouts/' + layout) %>
 
     </body>
 </html>
