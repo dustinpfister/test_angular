@@ -1,8 +1,14 @@
 
-<div ng-app="app" ng-controller="basic-control" >
+<div ng-app="app"  >
  
-    <p>money: {{money}}</p>
-    <p>per tick: {{moneyPerTick}}</p>
-    <p>tick rate: {{tickBaseRate}} / {{tickRate}} = {{ tickMS  }}</p>
+    <div ng-controller="disp">
+        <p>money: {{money}}</p>
+    </div>
+
+
+    <div ng-controller="two">
+        <p>money: {{money}}</p>
+		<button ng-click="getMoney()">get money</button>
+    </div>
  
 </div>

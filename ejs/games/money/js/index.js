@@ -1,25 +1,40 @@
 var app = angular.module('app', []);
 
-app.controller('basic-control', function ($scope) {
+app.factory('player', function () {
 
-    $scope.money = 0;
-    $scope.moneyPerTick = 0.25;
+    var player = {
 
-    $scope.tickLast = new Date(); // last tick
-    $scope.tickBaseRate = 10000; // the base number of ms that gets divided
-    $scope.tickRate = 2; // ticks per second
-    $scope.tickMS = $scope.tickBaseRate / $scope.tickRate;
+        money: 0,
+        moneyPerTick: .25,
+        tickLast: new Date(),
+        tickBaseRate: 1000,
+        tickRate: 1,
 
+    };
+
+    player.tickMS = player.tickBaseRate / player.tickRate;
+
+    return player;
+
+});
+
+app.controller('disp', function ($scope, player) {
+
+    $scope.money = player.money;
+
+    // main app loop
     var loop = function () {
 
         var now = new Date();
 
         setTimeout(loop, 33);
 
-        if (now - $scope.tickLast >= $scope.tickBaseRate / $scope.tickRate) {
+        if (now - player.tickLast >= player.tickBaseRate / player.tickRate) {
 
-            $scope.tickLast = now;
-            $scope.money += $scope.moneyPerTick;
+            $scope.money = player.money;
+
+            player.tickLast = now;
+            player.money += player.moneyPerTick;
             $scope.$apply();
 
         }
@@ -27,5 +42,17 @@ app.controller('basic-control', function ($scope) {
     };
 
     loop();
+
+});
+
+app.controller('two', function ($scope, player) {
+
+    $scope.getMoney = function () {
+
+        $scope.money = player.money;
+
+    };
+
+    $scope.getMoney();
 
 });
