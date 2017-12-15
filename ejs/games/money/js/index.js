@@ -22,6 +22,9 @@ app.factory('player', function () {
             this.tickRate = 10;
             this.tickMS = this.tickBaseRate / this.tickRate;
 
+            // use level class
+            this.level = new Level();
+
         },
 
         // what to do on each tick of a game loop
@@ -64,6 +67,8 @@ app.factory('player', function () {
                         this.money += this.workRate;
                         this.money = Number(this.money.toFixed(2));
 
+                        this.levelUp();
+
                     }
 
                 }
@@ -75,6 +80,14 @@ app.factory('player', function () {
 
         },
 
+        levelUp: function () {
+
+            this.level.setByExp(this.workCount);
+            this.workRate = .01 * this.level.level;
+
+        },
+
+        // the work button was clicked
         doWork: function () {
 
             if (!this.workingStart && !this.working) {
@@ -100,6 +113,11 @@ app.controller('disp', function ($scope, player) {
         $scope.money = player.money;
         $scope.workingTime = player.workingTime;
         $scope.workCompleteTime = player.workCompleteTime;
+        $scope.workCount = player.workCount;
+        $scope.level = player.level.level;
+
+        // !! figuring this on the fly
+        $scope.nextLevel = player.level.expForLevel($scope.level + 1);
 
     };
 
