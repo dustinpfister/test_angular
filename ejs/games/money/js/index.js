@@ -4,24 +4,25 @@ app.factory('player', function () {
 
     var player = {
 
-        money: 0,
+        // new game method will define all properties used to starting values
+        newGame: function () {
 
-        workRate: .01, // the about of money made when clicking the work button
-        workCompleteTime: 5000, // the amount of time it takes to complete a job
+            this.money = 0;
 
-        working: false, // is the player currently working?
-        workingStart: false, // is the player starting to work?
-        workingStartTime: new Date, // the time the player started working
-        workingTime: 0, // the amount of time in ms the player has worked so far
+            this.workRate = .01; // the about of money made when clicking the work button
+            this.workCompleteTime = 5000; // the amount of time it takes to complete a job
+            this.working = false; // is the player currently working?
+            this.workingStart = false; // is the player starting to work?
+            this.workingStartTime = new Date; // the time the player started working
+            this.workingTime = 0; // the amount of time in ms the player has worked so far
+            this.workCount = 0;
 
+            this.tickLast = new Date();
+            this.tickBaseRate = 1000;
+            this.tickRate = 10;
+            this.tickMS = this.tickBaseRate / this.tickRate;
 
-        workCount: 0,
-
-        moneyPerTick: .25,
-
-        tickLast: new Date(),
-        tickBaseRate: 1000,
-        tickRate: 10,
+        },
 
         // what to do on each tick of a game loop
         tick: function (done) {
@@ -30,7 +31,7 @@ app.factory('player', function () {
 
             done = done || function () {}
 
-            if (now - this.tickLast >= this.tickBaseRate / this.tickRate) {
+            if (now - this.tickLast >= this.tickMS) {
 
                 this.tickLast = now;
 
@@ -86,7 +87,7 @@ app.factory('player', function () {
 
     };
 
-    player.tickMS = player.tickBaseRate / player.tickRate;
+    player.newGame();
 
     return player;
 
@@ -98,7 +99,7 @@ app.controller('disp', function ($scope, player) {
 
         $scope.money = player.money;
         $scope.workingTime = player.workingTime;
-		$scope.workCompleteTime = player.workCompleteTime;
+        $scope.workCompleteTime = player.workCompleteTime;
 
     };
 
