@@ -5,4 +5,4 @@ This is the first game for my test_angular project. It is a simple incremental g
 
 ## The Work Button
 
-Click the work button to "do work" to which you get payed a small about of money each time.
+Click the work button to "do work" to which you get payed a small about of money each time. The money will not be payed out until the work is done, so there is a working time displayed.

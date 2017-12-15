@@ -21,7 +21,68 @@ app.factory('player', function () {
 
         tickLast: new Date(),
         tickBaseRate: 1000,
-        tickRate: 10
+        tickRate: 10,
+
+        // what to do on each tick of a game loop
+        tick: function (done) {
+
+            var now = new Date();
+
+            done = done || function () {}
+
+            if (now - this.tickLast >= this.tickBaseRate / this.tickRate) {
+
+                this.tickLast = now;
+
+                // if the player started working
+                if (this.workingStart) {
+
+                    this.workingStart = false;
+                    this.working = true;
+                    this.workingStartTime = now;
+                    this.workingTime = 0;
+
+                }
+                // i the player is working
+                if (this.working) {
+
+                    this.workingTime = now - this.workingStartTime;
+
+                    if (this.workingTime > this.workCompleteTime) {
+
+                        this.workingTime = this.workCompleteTime;
+
+                    }
+
+                    if (this.workingTime === this.workCompleteTime) {
+
+                        this.workingTime = 0;
+                        this.working = false;
+
+                        this.workCount += 1;
+                        this.money += this.workRate;
+                        this.money = Number(this.money.toFixed(2));
+
+                    }
+
+                }
+
+                // done with what needs to be done for player.tick
+                done();
+
+            }
+
+        },
+
+        doWork: function () {
+
+            if (!this.workingStart && !this.working) {
+
+                this.workingStart = true;
+
+            }
+
+        }
 
     };
 
@@ -37,6 +98,7 @@ app.controller('disp', function ($scope, player) {
 
         $scope.money = player.money;
         $scope.workingTime = player.workingTime;
+		$scope.workCompleteTime = player.workCompleteTime;
 
     };
 
@@ -49,47 +111,12 @@ app.controller('disp', function ($scope, player) {
 
         setTimeout(loop, 33);
 
-        if (now - player.tickLast >= player.tickBaseRate / player.tickRate) {
-
-            player.tickLast = now;
-
-            // if the player started working
-            if (player.workingStart) {
-
-                player.workingStart = false;
-                player.working = true;
-                player.workingStartTime = now;
-                player.workingTime = 0;
-
-            }
-
-            // i the player is working
-            if (player.working) {
-
-                player.workingTime = now - player.workingStartTime;
-
-                if (player.workingTime > player.workCompleteTime) {
-
-                    player.workingTime = player.workCompleteTime;
-
-                }
-
-                if (player.workingTime === player.workCompleteTime) {
-
-                    player.workingTime = 0;
-                    player.working = false;
-
-                    player.workCount += 1;
-                    player.money += player.workRate;
-                    player.money = Number(player.money.toFixed(2));
-
-                }
-
-            }
+        // call player.tick
+        player.tick(function () {
 
             $scope.$apply();
 
-        }
+        });
 
         //$scope.money = player.money;
         setValues();
@@ -102,26 +129,9 @@ app.controller('disp', function ($scope, player) {
 
 app.controller('work', function ($scope, player) {
 
-/*
-    // set player values to $scope
-    var setValues = function () {
-
-        $scope.workCount = player.workCount;
-        $scope.workRate = player.workRate;
-
-    };
-
-    setValues();
-*/
     $scope.doWork = function () {
 
-        if (!player.workingStart && !player.working) {
-
-            player.workingStart = true;
-
-        }
-
-  //      setValues();
+        player.doWork();
 
     };
 
