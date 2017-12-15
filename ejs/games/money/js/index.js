@@ -5,6 +5,10 @@ app.factory('player', function () {
     var player = {
 
         money: 0,
+
+        workRate: .01, // the about of money made when clicking the work button
+        workCount: 0,
+
         moneyPerTick: .25,
         tickLast: new Date(),
         tickBaseRate: 1000,
@@ -20,7 +24,13 @@ app.factory('player', function () {
 
 app.controller('disp', function ($scope, player) {
 
-    $scope.money = player.money;
+    var setValues = function () {
+
+        $scope.money = player.money;
+
+    };
+
+    setValues();
 
     // main app loop
     var loop = function () {
@@ -31,13 +41,14 @@ app.controller('disp', function ($scope, player) {
 
         if (now - player.tickLast >= player.tickBaseRate / player.tickRate) {
 
-            $scope.money = player.money;
-
             player.tickLast = now;
-            player.money += player.moneyPerTick;
+
             $scope.$apply();
 
         }
+
+        //$scope.money = player.money;
+        setValues();
 
     };
 
@@ -45,14 +56,26 @@ app.controller('disp', function ($scope, player) {
 
 });
 
-app.controller('two', function ($scope, player) {
+app.controller('work', function ($scope, player) {
 
-    $scope.getMoney = function () {
+    // set player values to $scope
+    var setValues = function () {
 
-        $scope.money = player.money;
+        $scope.workCount = player.workCount;
+        $scope.workRate = player.workRate;
 
     };
 
-    $scope.getMoney();
+    setValues();
+
+    $scope.doWork = function () {
+
+        player.workCount += 1;
+        player.money += player.workRate;
+        player.money = Number(player.money.toFixed(2));
+
+        setValues();
+
+    };
 
 });
