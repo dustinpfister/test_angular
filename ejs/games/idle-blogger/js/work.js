@@ -11,7 +11,7 @@ app.factory('work', function (Level) {
             this.money = 0;
 
             this.workRate = .01; // the about of money made when clicking the work button
-            this.workCompleteTime = 5000; // the amount of time it takes to complete a job
+            this.workCompleteTime = 500; // the amount of time it takes to complete a job
             this.working = false; // is the player currently working?
             this.workingStart = false; // is the player starting to work?
             this.workingStartTime = new Date; // the time the player started working

@@ -2,18 +2,23 @@
 <div ng-app="app"  >
  
     <div ng-controller="disp">
+
         <h3>money: {{money}}</h3>
 
     </div>
 
     <div ng-controller="work" style="border:1px solid #000000;padding:20px;">
 
-	    <h3>Work:</h3>
+        <h3>Work:</h3>
 
-        <p>working time: {{workingTime}} &#47 {{workCompleteTime}}</p>
+        <p> You have a job in which the rate at which the requirements of advancement grows exponentially (and incrementally), but the pay rate gos up incrementally. To put it simply your job sucks. Never the less it is a way to make some money manually, rejoice!</p>
 
-        <p>Level: {{level}}</p>
-        <p>exp: {{workCount}} for next level {{nextLevel}}</p>
+        <ul>
+            <li>Level: {{level}}</li>
+            <li>exp: {{workCount}} ( next level {{nextLevel}} ) </li>
+            <li>rate: {{workRate}}</li>
+            <li>working time: {{workingTime}} &#47 {{workCompleteTime}} </li>
+        </ul>
 
         <button ng-click="doWork()">Work</button>
     </div>

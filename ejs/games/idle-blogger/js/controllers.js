@@ -42,9 +42,8 @@ app.controller('work', function ($scope, $timeout, work) {
     var setValues = function () {
 
         $scope.workingTime = work.workingTime;
-
         $scope.workCompleteTime = work.workCompleteTime;
-
+        $scope.workRate = work.workRate;
         $scope.workCount = work.workCount;
         $scope.level = work.level.level;
 
@@ -68,7 +67,7 @@ app.controller('work', function ($scope, $timeout, work) {
         setValues();
 
     };
-	
-	loop();
+
+    loop();
 
 });
