@@ -280,3 +280,5 @@ app.controller('work', function ($scope, player) {
  
 });
 ```
+
+For this project I just wanted to make a basic idle game, nothing special.

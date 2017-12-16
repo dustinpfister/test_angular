@@ -2,12 +2,17 @@
 <div ng-app="app"  >
  
     <div ng-controller="disp">
-        <p>money: {{money}}</p>
+        <h3>money: {{money}}</h3>
+        <p>working time: {{workingTime}} &#47 {{workCompleteTime}}</p>
+
+        <p>Level: {{level}}</p>
+        <p>exp: {{workCount}} for next level {{nextLevel}}</p>
+
     </div>
 
-    <div ng-controller="two">
-        <p>money: {{money}}</p>
-        <button ng-click="getMoney()">get money</button>
+    <div ng-controller="work">
+
+        <button ng-click="doWork()">Work</button>
     </div>
  
 </div>
