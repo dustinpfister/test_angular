@@ -1,7 +1,6 @@
-## Money
+## Idle Blogger
 
-This is the first game for my test_angular project. It is a simple incremental game, that makes use of controllers, and a shared object between them made with angular.factory.
-
+This game stared out as a hacked over copy of my first angular game that I just called money. In this project I started to really get into the use of angular.factory to make my own providers like $scope, and $http that I can use in controllers.
 
 ## Work a job button
 
