@@ -79,6 +79,7 @@ app.controller('posts', function ($scope, $timeout, posts) {
 
         $scope.money = posts.money;
         $scope.posts = posts.postCT;
+		$scope.tickTime = posts.tickTime;
 
         $scope.level = posts.level.level;
         $scope.tiers = posts.tiers;

@@ -20,15 +20,33 @@ app.factory('posts', function (Level) {
         postCT: 0,
         tiers: [], // and array of objects that have to do with posts of a certain level
 
+
+        tickLast: new Date(),
+        tickRate: 5000,
+        tickTime: 0,
+
         tick: function () {
 
             var self = this;
 
-            this.tiers.forEach(function (tier) {
+            this.tickTime = new Date() - this.tickLast;
 
-                self.money += tier.rate * tier.count;
+            if (this.tickTime > this.tickRate) {
+                this.tickTime = this.tickRate;
+            }
 
-            });
+            if (this.tickTime === this.tickRate) {
+
+                this.tiers.forEach(function (tier) {
+
+                    self.money += tier.rate * tier.count;
+
+                });
+
+                this.tickLast = new Date();
+                this.tickTime = 0;
+
+            }
 
             // this.money += this.postCT * 0.01;
             this.money = this.money.toFixed(2) * 1;
@@ -49,7 +67,7 @@ app.factory('posts', function (Level) {
                 this.tiers[i] = {
 
                     postTier: i + 1,
-                    count: 0,
+                    count: 1,
                     rate: 0.01 * (i + 1)
 
                 };
