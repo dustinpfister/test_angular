@@ -12,7 +12,7 @@ app.factory('posts', function (Level) {
         money: 0,
 
         level: new Level({
-            cap: 10,
+            cap: 3,
             pow: 1.25,
             inc: 5
         }),
@@ -40,8 +40,9 @@ app.factory('posts', function (Level) {
 
                 this.tiers[i] = {
 
-                    postTier: i+1,
-                    count: 0
+                    postTier: i + 1,
+                    count: 0,
+                    rate: 0.01 * (i + 1)
 
                 };
 
