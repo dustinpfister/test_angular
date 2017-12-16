@@ -14,6 +14,7 @@
         <p> You have a job in which the rate at which the requirements of advancement grows exponentially (and incrementally), but the pay rate gos up incrementally. To put it simply your job sucks. Never the less it is a way to make some money manually, rejoice!</p>
 
         <ul>
+            <li>money: {{money}}</li>
             <li>Level: {{level}}</li>
             <li>exp: {{workCount}} ( next level {{nextLevel}} ) </li>
             <li>rate: {{workRate}}</li>
@@ -21,6 +22,21 @@
         </ul>
 
         <button ng-click="doWork()">Work</button>
+    </div>
+
+    <div ng-controller="posts" style="border:1px solid #000000;padding:20px;margin-top:20px;">
+
+        <h3>Posts:</h3>
+
+        <p> You have a single website in which now and then you write a blog post about a topic of interest to a lot of people. Maybe there is a way to make some money with it.</p>
+
+        <ul>
+            <li>money: {{money}}</li>
+            <li># of posts: {{posts}}</li>
+        </ul>
+
+        <button ng-click="writePost()">Write Post</button>
+
     </div>
  
 </div>

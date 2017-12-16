@@ -1,4 +1,4 @@
-app.factory('player', function (work) {
+app.factory('player', function (work, posts) {
 
     return {
 
@@ -8,7 +8,9 @@ app.factory('player', function (work) {
 
             work.tick();
 
-            this.money = work.money;
+            this.money = work.money + posts.money;
+
+            this.money = this.money.toFixed(2) * 1;
 
         },
 

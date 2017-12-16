@@ -46,6 +46,7 @@ app.controller('work', function ($scope, $timeout, work) {
         $scope.workRate = work.workRate;
         $scope.workCount = work.workCount;
         $scope.level = work.level.level;
+        $scope.money = work.money;
 
         // !! figuring this on the fly
         $scope.nextLevel = work.level.expForLevel($scope.level + 1);
@@ -63,6 +64,39 @@ app.controller('work', function ($scope, $timeout, work) {
     var loop = function () {
 
         $timeout(loop, 100);
+
+        setValues();
+
+    };
+
+    loop();
+
+});
+
+app.controller('posts', function ($scope, $timeout, posts) {
+
+    var setValues = function () {
+
+        $scope.money = posts.money;
+        $scope.posts = posts.posts;
+
+    };
+
+    setValues();
+
+    $scope.writePost = function () {
+
+        console.log('oh hell yeah!');
+
+        posts.write();
+
+    };
+
+    var loop = function () {
+
+        $timeout(loop, 100);
+
+        posts.tick();
 
         setValues();
 
