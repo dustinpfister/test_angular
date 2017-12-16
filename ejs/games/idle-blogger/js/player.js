@@ -8,7 +8,7 @@ app.factory('player', function (work) {
 
             work.tick();
 
-            money = work.money;
+            this.money = work.money;
 
         },
 

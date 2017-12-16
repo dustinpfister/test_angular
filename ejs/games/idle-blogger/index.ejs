@@ -3,14 +3,17 @@
  
     <div ng-controller="disp">
         <h3>money: {{money}}</h3>
+
+    </div>
+
+    <div ng-controller="work" style="border:1px solid #000000;padding:20px;">
+
+	    <h3>Work:</h3>
+
         <p>working time: {{workingTime}} &#47 {{workCompleteTime}}</p>
 
         <p>Level: {{level}}</p>
         <p>exp: {{workCount}} for next level {{nextLevel}}</p>
-
-    </div>
-
-    <div ng-controller="work">
 
         <button ng-click="doWork()">Work</button>
     </div>
