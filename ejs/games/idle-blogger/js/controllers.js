@@ -79,14 +79,17 @@ app.controller('posts', function ($scope, $timeout, posts) {
 
         $scope.money = posts.money;
         $scope.posts = posts.postCT;
-		
-		$scope.level = posts.level.level;
+
+        $scope.level = posts.level.level;
+        $scope.tiers = posts.tiers;
 
     };
 
     setValues();
 
     $scope.writePost = function () {
+
+        console.log(posts.tiers);
 
         posts.write();
 

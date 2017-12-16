@@ -30,13 +30,20 @@
 
         <p> You have a single website in which now and then you write a blog post about a topic of interest to a lot of people. Maybe there is a way to make some money with it.</p>
 
+        <button ng-click="writePost()">Write Post</button>
+
         <ul>
             <li>level: {{level}}</li>
             <li>money: {{money}}</li>
             <li># of posts: {{posts}}</li>
         </ul>
 
-        <button ng-click="writePost()">Write Post</button>
+        <ul ng-repeat="tier in tiers">
+
+            <li> Post Tier: {{tier.postTier}} </li>
+            <li> count: {{tier.count}} </li>
+
+        </ul>
 
     </div>
  

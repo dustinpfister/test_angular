@@ -18,7 +18,7 @@ app.factory('posts', function (Level) {
         }),
 
         postCT: 0,
-        posts: [], // and array of objects that have to do with posts of a certain level
+        tiers: [], // and array of objects that have to do with posts of a certain level
 
         tick: function () {
 
@@ -29,18 +29,18 @@ app.factory('posts', function (Level) {
 
         write: function () {
 
-            var postTier = Math.ceil(Math.random() * this.level),
-            tier = this.posts[postTier];
+            var i = Math.floor(Math.random() * this.level.level);
 
-            if (tier) {
+            if (this.tiers[i]) {
 
-                tier += 1;
+                //tier += 1;
+                this.tiers[i].count += 1;
 
             } else {
 
-                tier = {
+                this.tiers[i] = {
 
-                    postTier: postTier,
+                    postTier: i+1,
                     count: 0
 
                 };
