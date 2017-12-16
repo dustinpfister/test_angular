@@ -22,6 +22,14 @@ app.factory('posts', function (Level) {
 
         tick: function () {
 
+            var self = this;
+
+            this.tiers.forEach(function (tier) {
+
+                self.money += tier.rate * tier.count;
+
+            });
+
             // this.money += this.postCT * 0.01;
             this.money = this.money.toFixed(2) * 1;
 
