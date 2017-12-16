@@ -1,15 +1,18 @@
-app.controller('disp', function ($scope, player) {
+app.controller('disp', function ($scope, $timeout, player, work) {
 
     var setValues = function () {
 
         $scope.money = player.money;
-        $scope.workingTime = player.workingTime;
-        $scope.workCompleteTime = player.workCompleteTime;
-        $scope.workCount = player.workCount;
-        $scope.level = player.level.level;
+
+        $scope.workingTime = work.workingTime;
+
+        $scope.workCompleteTime = work.workCompleteTime;
+
+        $scope.workCount = work.workCount;
+        $scope.level = work.level.level;
 
         // !! figuring this on the fly
-        $scope.nextLevel = player.level.expForLevel($scope.level + 1);
+        $scope.nextLevel = work.level.expForLevel($scope.level + 1);
 
     };
 
@@ -20,14 +23,10 @@ app.controller('disp', function ($scope, player) {
 
         var now = new Date();
 
-        setTimeout(loop, 33);
+        $timeout(loop, 33);
 
         // call player.tick
-        player.tick(function () {
-
-            $scope.$apply();
-
-        });
+        player.tick();
 
         //$scope.money = player.money;
         setValues();
@@ -38,11 +37,11 @@ app.controller('disp', function ($scope, player) {
 
 });
 
-app.controller('work', function ($scope, player) {
+app.controller('work', function ($scope, work) {
 
     $scope.doWork = function () {
 
-        player.doWork();
+        work.doWork();
 
     };
 
