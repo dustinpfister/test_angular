@@ -4,14 +4,14 @@ app.factory('Fixer', function ($http) {
 
     return {
 
-        // get the latest data
+        // get the latest fixer.io data
         latest: function () {
 
             return $http.get('https://api.fixer.io/latest')
 
         },
 
-        // use hard coded data in this *.js
+        // use hard coded fixer.io data in this *.js
         hardCoded: function () {
 
             return {
@@ -69,20 +69,27 @@ app.factory('Fixer', function ($http) {
 
         },
 
+        // format the given fixer.io data
         format: function (fixerData) {
 
             let keys = Object.keys(fixerData.data.rates);
 
-            return keys.map(function (key, i) {
+            return {
 
-                return {
+                rates: keys.map(function (key, i) {
 
-                    key: key,
-                    rate: fixerData.data.rates[key]
+                    return {
 
-                }
+                        key: key,
+                        rate: fixerData.data.rates[key]
 
-            });
+                    }
+
+                }),
+
+                time: fixerData.data.date
+
+            };
 
         },
 
@@ -110,11 +117,13 @@ app.factory('Fixer', function ($http) {
 
             }).then(function (latest) {
 
+                // format and return the latest
                 return self.format(latest);
 
             }).catch (function () {
 
-                return self.format(self.hardCoded);
+                // format and return hard coded data
+                return self.format(self.hardCoded());
 
             });
 
@@ -124,18 +133,25 @@ app.factory('Fixer', function ($http) {
 
 });
 
-app.factory('DispRates', function () {});
-
 app.controller('fact-control', function ($scope, Fixer) {
 
-    Fixer.latestFormatted().then(function (latest) {
+    var setValues = function (fix) {
 
-        $scope.rates = latest;
+        $scope.time = fix.time;
+        $scope.rates = fix.rates;
+
+    };
+
+    // set values with latest, or hardcoded fixer.io data rates
+    Fixer.latestFormatted().then(function (fix) {
+
+        setValues(fix);
         $scope.$apply();
 
-    }).catch (function () {
+    }).catch (function (fix) {
 
-        $scope.rates = 'Cound not get Data';
+        setValues(fix);
+        $scope.$apply();
 
     });
 
