@@ -145,7 +145,6 @@ Because this is all about testing out angular, and what can be done with it. Why
 * ten angular 1.6.7 demos
 * two games in the works
 
-
 0.1.x
 
 * create a /lib folder for back end scripts that are not used by front ends in the /backends folder
@@ -156,6 +155,4 @@ Because this is all about testing out angular, and what can be done with it. Why
 * add js-yaml as a dependency for yaml file support
 * add support for conf.yaml files for demos, games, and path indexs
 * can set angular version in conf.yaml
-
-* more demos
-* continue working on games, maybe make more.
+* 11 demos so far
