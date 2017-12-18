@@ -150,6 +150,9 @@ Because this is all about testing out angular, and what can be done with it. Why
 
 * create a /lib folder for back end scripts that are not used by front ends in the /backends folder
 * /css path for plain old static css files in /ejs/css
+* new /js path to replace /lib path for getting angular.js in the front end
+* can get angular from the front end like this /js/angular/1/6/7/angular.min.js
+* two versions of angular in the /js path for now 1.6.7, and 1.1.5
 
 * add js-yaml as a dependency for yaml file support
 * add support for demo.yaml files for demo folders
