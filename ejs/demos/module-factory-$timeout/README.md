@@ -1,3 +1,3 @@
 # Module factory $timeout
 
-Using $TIMEOUT in a factory module
+Using $timeout in a factory module

@@ -2,25 +2,36 @@ var app = angular.module('app', []);
 
 app.factory('loop', function ($timeout) {
 
+    // a state
     var state = {
 
         start: new Date(),
-        count: 0
+        time: 0,
+        count: 0,
+        ms: 250
 
     },
+
+    // loop
     loop = function () {
+
+        var now = new Date();
+
+        state.time = now - state.start;
 
         state.count += 1;
 
-        $timeout(loop, 33);
+        $timeout(loop, state.ms);
 
     };
 
+    // start loop
     loop();
 
+    // api
     return {
 
-        // grab the current count
+        // grab the current state
         grab: function (func) {
 
             return state;
@@ -31,24 +42,10 @@ app.factory('loop', function ($timeout) {
 
 });
 
-app.controller('fact-control', function ($scope, $timeout, loop) {
+app.controller('fact-control', function ($scope, loop) {
 
-    $scope.grab = function () {
-
+        // reference the state object
         var state = loop.grab();
-
-        $scope.count = state.count;
-
-    };
-
-    var autoCheck = function () {
-
-        $scope.grab();
-
-        $timeout(autoCheck, 1000);
-
-    }
-
-    autoCheck();
+        $scope.state = state;
 
 });
