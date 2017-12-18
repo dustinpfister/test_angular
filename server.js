@@ -63,7 +63,13 @@ server.route({
 
             title: 'Angular Demos - Home',
             layout: 'home',
-            name: '' // empty string for the current demo name for now
+            name: '', // empty string for the current demo name for now
+            angular: {
+
+                version: '1.6.7',
+                fn: 'angular.js'
+
+            }
 
         }, request, reply);
 
@@ -186,7 +192,13 @@ server.route({
 
             title: 'Angular demo - ' + request.params.name,
             layout: 'demo_index',
-            name: ''
+            name: '',
+            angular: {
+
+                version: '1.6.7',
+                fn: 'angular.js'
+
+            }
 
         }, request, reply);
 
@@ -311,7 +323,13 @@ server.route({
 
             title: 'Angular games',
             layout: 'game_index',
-            name: ''
+            name: '',
+            angular: {
+
+                version: '1.6.7',
+                fn: 'angular.js'
+
+            }
 
         }, request, reply);
 
@@ -330,7 +348,13 @@ server.route({
 
             title: 'Angular game - ' + request.params.name,
             layout: 'game',
-            name: request.params.name
+            name: request.params.name,
+            angular: {
+
+                version: '1.6.7',
+                fn: 'angular.min.js'
+
+            }
 
         }, request, reply);
     }
