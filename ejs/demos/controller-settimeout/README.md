@@ -1,5 +1,7 @@
 # Controller settimeout Demo
 
+Although you can do this, it may not be the best way to do so. There is the $timeout service, and it can be used when making my own services. (check out the module-factory-$timeout demo)
+
 Here I am using settimeout as a way of updating a $scope every once in a while.
 
 ## HTML
