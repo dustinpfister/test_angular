@@ -1,0 +1,3 @@
+angular:
+    version: 1.5.1
+    fn: angular.min.js

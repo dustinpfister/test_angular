@@ -153,8 +153,8 @@ Because this is all about testing out angular, and what can be done with it. Why
 * new /js path to replace /lib path for getting angular.js in the front end
 * can get angular from the front end like this /js/angular/1/6/7/angular.min.js
 * two versions of angular in the /js path for now 1.6.7, and 1.1.5
-
 * add js-yaml as a dependency for yaml file support
-* add support for demo.yaml files for demo folders
+
+* add support for conf.yaml files for demos, games, and path indexs
 * more demos
 * continue working on games, maybe make more.
