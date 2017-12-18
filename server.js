@@ -205,7 +205,13 @@ server.route({
 
             title: 'Angular demo - ' + request.params.name,
             layout: 'demo',
-            name: request.params.name
+            name: request.params.name,
+            angular: {
+
+                version: '1.6.7',
+                fn: 'angular.js'
+
+            }
 
         }, request, reply);
 
