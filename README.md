@@ -95,16 +95,6 @@ The js method will inject a script tag for a given js file that is in the js fol
 
 will give me what is at /ejs/demos/foo/js/main.js for a current demo named 'foo'
 
-## Features
-
-### Demos index separate from home
-
-Have a condition for just /demos and not just /demos/[demoname] placing the index for all demos there at /demos freeing up home for something else.
-
-### Better site Navigation
-
-When I was first starting out there where only two paths to navigate to /demos/[demoname] and / that acts as an index of the demos. Sense then I now have a /demos path that gives the index of demos, and a github link in a nav.ejs part file that makes up all pages on the site.
-
 ## Future Ideas For Features
 
 If my posts on angular do well, I will continue to support this project some of the ideas I have listed here I might not ever get to if people show little interest in my sites analytics.
@@ -136,3 +126,26 @@ A custom 404 page for the project.
 ### /css path
 
 I currently just have hard coded styles in the main index.ejs
+
+
+## Versions
+
+0.0.91 - First release
+
+* Using angular 1.6.7
+* Using hapi 16.x as the server framework in place of the usual express.js
+* Using the ejs template engine for back end rendering.
+* made an api (ejs-api) for use in ejs templates.
+* have a /backends folder that contains scripts to be used in the /back path (backend scripts for demos)
+* ten angular 1.6.7 demos
+* two games in the works
+
+
+0.1.x
+
+* /css path for plain old static css files in /ejs/css
+* add js-yaml as a dependency for yaml file support
+* add support for demo.yaml files for demo folders
+* create a /lib folder for back end scripts that are not used by front ends in the /backends folder
+* more demos
+* continue working on games, maybe make more.

@@ -2,7 +2,7 @@ var Hapi = require('hapi'),
 fs = require('fs'),
 ejs = require('ejs'),
 
-APIEJS = require('./api-ejs');
+APIEJS = require('./lib/api-ejs');
 
 // create a new instance of hapi server
 var server = new Hapi.Server();
