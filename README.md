@@ -103,6 +103,8 @@ If my posts on angular do well, I will continue to support this project some of 
 
 As of this writing test_angular just used angular 1.6.7. As such I might add a special path for many versions of angular, as well as possibly other front end dependences. The current lib path is a crud way of just grabbing at something that may be in the root path of a node module in node_modules.
 
+check out [https://code.angularjs.org/](https://code.angularjs.org/) for older versions
+
 ### demo.json / demo.yaml files
 
 I might want to have a demo.json file for each demo. This would contain information such as a description that will be displayed in the home page. It can also be used to declare the version of angular to use, as well as any other relevant information about a demo. I might also make them yaml files rather than the usual json.
