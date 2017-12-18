@@ -148,6 +148,7 @@ Because this is all about testing out angular, and what can be done with it. Why
 
 * create a /lib folder for back end scripts that are not used by front ends in the /backends folder
 * /css path for plain old static css files in /ejs/css
+
 * add js-yaml as a dependency for yaml file support
 * add support for demo.yaml files for demo folders
 * more demos

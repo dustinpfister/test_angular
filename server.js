@@ -6,7 +6,6 @@ APIEJS = require('./lib/api-ejs');
 // create a new instance of hapi server
 var server = new Hapi.Server();
 
-
 // port 3000, and I will be using localhost
 // when running I will connect via http://localhost:3000
 server.connection({
@@ -135,6 +134,44 @@ server.route({
 });
 
 /********* ********* ********* *********
+Front end *.js files (all pages)
+ ********* ********* ********* *********/
+
+// *.js files path for all pages ( /js/angular/1.6.7/angular.js )
+server.route({
+
+    method: 'GET',
+    path: '/js/{project}/{v}/{filename}',
+    handler: function (request, reply) {
+
+        var project = request.params.project,
+        version = request.params.v,
+        filename = request.params.filename;
+
+        var path = './ejs/js/' + project + '/' + version + '/' + filename;
+
+        // attempt to get the file
+        fs.readFile(path, 'utf-8', function (e, data) {
+
+            if (e) {
+
+                console.log(e);
+
+                reply(e);
+
+            } else {
+
+                reply(data).type('application/javascript');
+
+            }
+
+        });
+
+    }
+
+});
+
+/********* ********* ********* *********
 Demos
  ********* ********* ********* *********/
 
@@ -194,7 +231,7 @@ server.route({
 
             } else {
 
-                reply(data).type('text');
+                reply(data).type('application/javascript');
 
             }
 
@@ -312,7 +349,7 @@ server.route({
 
             } else {
 
-                reply(data).type('text');
+                reply(data).type('application/javascript');
 
             }
 
