@@ -127,6 +127,9 @@ A custom 404 page for the project.
 
 I currently just have hard coded styles in the main index.ejs
 
+### angular apps for home, demos, and game pages
+
+Because this is all about testing out angular, and what can be done with it. Why no make some angular apps for the home page, as well as the demo and game pages.
 
 ## Versions
 
@@ -143,9 +146,9 @@ I currently just have hard coded styles in the main index.ejs
 
 0.1.x
 
+* create a /lib folder for back end scripts that are not used by front ends in the /backends folder
 * /css path for plain old static css files in /ejs/css
 * add js-yaml as a dependency for yaml file support
 * add support for demo.yaml files for demo folders
-* create a /lib folder for back end scripts that are not used by front ends in the /backends folder
 * more demos
 * continue working on games, maybe make more.

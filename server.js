@@ -106,6 +106,35 @@ server.route({
 });
 
 /********* ********* ********* *********
+Images
+ ********* ********* ********* *********/
+
+// images path
+server.route({
+
+    method: 'GET',
+    path: '/css/{filename}',
+    handler: function (request, h) {
+
+        fs.readFile('./ejs/css/' + request.params.filename, 'utf-8', function (e, css) {
+
+            if (e) {
+
+                h(e);
+
+            } else {
+
+                h(css).type('text/css');
+
+            }
+
+        });
+
+    }
+
+});
+
+/********* ********* ********* *********
 Demos
  ********* ********* ********* *********/
 

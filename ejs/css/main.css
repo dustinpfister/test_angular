@@ -1,0 +1,38 @@
+.container{
+
+    width: 100%;
+    text-align:center;
+}
+
+.list{
+
+    margin-top:50px;
+    border: 3px solid #000000;
+    padding:20px;
+
+}
+
+.wrap-demo-index{
+
+   padding:20px;
+   border: 3px solid #000000;
+
+}
+
+.wrap-game-index{
+
+   padding:20px;
+   border: 3px solid #000000;
+
+}
+
+.wrap-demo-readme{
+
+   margin-top:50px;
+   padding:20px;
+   border: 3px dashed #000000;
+}
+
+a:link{color:#af0000;}
+a:visited{color:#880000;}
+a:hover{color:#ff0000;}
