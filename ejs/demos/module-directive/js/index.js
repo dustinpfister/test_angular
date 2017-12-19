@@ -52,6 +52,67 @@ app.directive('addScope', function () {
 
 });
 
+app.directive('many', function () {
+
+    return {
+
+        restrict: 'AE',
+        replace: 'true',
+        template: '<div><p>{{p.mess}}</p></div>',
+        compile: function (el, att) {
+
+            console.log('complie');
+            return this.link;
+
+        },
+        link: function (scope, el, att) {
+
+            console.log('link');
+
+            if (!scope.p) {
+
+                scope.p = {mess:'single use'};
+
+            }
+
+        }
+
+    };
+
+});
+
+app.controller('manyControl', function ($scope) {
+    $scope.obj = [{
+            mess: 'one'
+        }, {
+            mess: 'two'
+        }, {
+            mess: 'three'
+        }
+    ];
+});
+
+/*
+app.controller('manyControl', function ($scope) {
+
+$scope.obj = [{
+
+mess: 'one'
+
+}, {
+
+mess: 'two'
+
+}, {
+
+mess: 'three'
+
+}
+];
+
+});
+ */
+
 /*
 app.directive('useTemp', function () {
 

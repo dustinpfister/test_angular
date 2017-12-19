@@ -1,10 +1,18 @@
 
 <div ng-app="app">
-
+ 
    <data-first-directive></data-first-directive>
-
+ 
    <data-use-controller ng-controller="the-controller"></data-use-controller>
-
-      <data-add-scope></data-add-scope>
-   
+ 
+    <data-add-scope></data-add-scope>
+ 
+    <div ng-controller="manyControl">
+ 
+        <div ng-repeat="p in obj">
+            <data-many></data-many>
+        </div>
+ <data-many></data-many>
+    </div>
+ 
 </div>

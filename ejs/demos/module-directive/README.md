@@ -41,6 +41,8 @@ The object that is returned when creating a directive needs to have the given pr
 
 * link - add custom $scope to a directive.
 
+* compile - I use this if I need to do something once during the angular compile phase.
+
 ## directives and $scope of a controller
 
 The new directive that I make does not get it's own scope, at least not out of the gate, instead it uses the scope of its parent element.
@@ -90,3 +92,7 @@ app.directive('addScope', function () {
  
 });
 ```
+
+## the compile property
+
+If I need to do something during the angular compile phase.
