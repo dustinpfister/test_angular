@@ -39,11 +39,13 @@ The object that is returned when creating a directive needs to have the given pr
 
 * templateUrl - this can be used to link to an external template
 
-## directives and $scope
+* link - add custom $scope to a directive.
 
-The new  directive that I make does not get it's own scope, instead it uses the scope of its parent element.
+## directives and $scope of a controller
 
-``js
+The new directive that I make does not get it's own scope, at least not out of the gate, instead it uses the scope of its parent element.
+
+```js
 app.directive('useController', function () {
  
     return {
@@ -59,6 +61,32 @@ app.directive('useController', function () {
 app.controller('the-controller', function ($scope) {
  
     $scope.mess = 'using the controller';
+ 
+});
+```
+
+## adding $scope to a directive using the link property
+
+If I want to add some custom stuff to $scope i can do so with the link property of the object
+
+```js
+app.directive('addScope', function () {
+ 
+    return {
+ 
+        restrict: 'AE',
+        replace: 'true',
+        template: '<p>{{mess}}</p>',
+        link: function (scope, el, att) {
+ 
+            if (!scope.mess) {
+ 
+                scope.mess = 'this is some local stuff.';
+ 
+            }
+        }
+ 
+    };
  
 });
 ```
