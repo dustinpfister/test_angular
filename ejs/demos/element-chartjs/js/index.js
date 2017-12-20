@@ -9,37 +9,33 @@ app.directive('chart', function () {
 
         restrict: 'AE',
         replace: 'true',
-        template: '<canvas></canvas>',
-        /*
-        compile: function (el,b) {
-
-        return this.link
-
-        },
-         */
-
+        template: '<div><canvas></canvas></div>',
         link: function (scope, el, attr) {
 
-            var el = el[0];
+            var container = el[0];
+            var canvas = container.children[0];
 
+            scope.colors = attr.colors.split(';');
             scope.labels = attr.labels.split(';') || [];
             scope.sets = [];
-
+            scope.width = attr.width || 640;
             var datasets = attr.datasets.split(' ');
 
-            datasets.forEach(function (set) {
+            container.style.width = scope.width + 'px';
+
+            datasets.forEach(function (set, i) {
 
                 scope.sets.push({
 
                     label: set.split('[')[0],
-                    borderColor: '#ff0000',
+                    borderColor: scope.colors[i] || '#0000ff',
                     data: set.split('[')[1].split(';')
 
                 });
 
             });
 
-            scope.ctx = el.getContext('2d');
+            scope.ctx = canvas.getContext('2d');
             scope.chart = new Chart(scope.ctx, {
 
                     type: attr.type || 'line',
