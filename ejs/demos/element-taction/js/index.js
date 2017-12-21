@@ -7,8 +7,18 @@ app.directive('taction', function ($timeout) {
 
         restrict: 'AE',
         replace: 'true',
+        //tranclude: true,
+        scope: {
+
+            time: '@time'
+
+        },
         template: '<div class=\"taction-container\"><input class=\"taction-input\" type=\"button\" ng-click=\"actionClick()\"><canvas class=\"taction-canvas\" ng-show="showOn"></canvas></div>',
         link: function (scope, el, attr) {
+			
+			
+			
+            console.log(scope);
 
             scope.container = el[0];
             scope.canvas = scope.container.children[1];
@@ -69,6 +79,8 @@ app.directive('taction', function ($timeout) {
             // when button is clicked
             scope.actionClick = function () {
 
+                console.log(scope.time);
+
                 if (!scope.busy) {
 
                     scope.busy = true;
@@ -112,7 +124,7 @@ app.directive('taction', function ($timeout) {
             // onDone method that can be set by a controller
             scope.onDone = scope.onDone || function () {
 
-                console.log('define an onClick in your controller');
+                console.log('define an onDone in your controller');
 
             };
 
