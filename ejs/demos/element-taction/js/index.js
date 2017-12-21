@@ -7,7 +7,7 @@ app.directive('taction', function ($timeout) {
 
         restrict: 'AE',
         replace: 'true',
-        template: '<div><input type=\"button\" ng-click=\"actionClick()\"><canvas ng-show="showOn"></canvas></div>',
+        template: '<div class=\"taction-container\"><input class=\"taction-input\" type=\"button\" ng-click=\"actionClick()\"><canvas class=\"taction-canvas\" ng-show="showOn"></canvas></div>',
         link: function (scope, el, attr) {
 
             scope.container = el[0];
