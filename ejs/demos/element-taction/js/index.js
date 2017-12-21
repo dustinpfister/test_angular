@@ -10,13 +10,15 @@ app.directive('taction', function ($timeout) {
         template: '<div><input type=\"button\" ng-click=\"actionClick()\"><canvas ng-show="showOn"></canvas></div>',
         link: function (scope, el, attr) {
 
-            var container = el[0];
-            var canvas = container.children[1];
-            var button = container.children[0];
+            scope.container = el[0];
+            scope.canvas = scope.container.children[1];
+            scope.button = scope.container.children[0];
 
-            canvas.width = 320;
-            canvas.height = 20;
-            canvas.style.background = '#000000';
+            scope.button.value = 'action';
+
+            scope.canvas.width = 320;
+            scope.canvas.height = 20;
+            scope.canvas.style.background = '#000000';
 
             scope.showOn = false;
             scope.busy = false;
@@ -37,9 +39,9 @@ app.directive('taction', function ($timeout) {
                     $timeout(scope.loop, 33);
 
                     scope.progress = elapsed / scope.time;
-                }
+                    scope.onProgress();
 
-                console.log(scope.progress);
+                }
 
                 if (scope.progress === 1) {
 
@@ -74,7 +76,19 @@ app.directive('taction', function ($timeout) {
 
             };
 
-            button.value = 'action';
+            // onProgress method that can be set by a controller
+            scope.onProgress = scope.onProgress || function () {
+
+                console.log(scope.progress);
+
+            };
+
+            // onDone method that can be set by a controller
+            scope.onDone = scope.onDone || function () {
+
+                console.log('define an onClick in your controller');
+
+            };
 
         }
 
