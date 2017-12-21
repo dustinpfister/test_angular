@@ -15,11 +15,14 @@ app.directive('taction', function ($timeout) {
             scope.ctx = scope.canvas.getContext('2d');
             scope.button = scope.container.children[0];
 
-            scope.button.value = 'action';
-
             scope.canvas.width = 320;
             scope.canvas.height = 20;
-            scope.canvas.style.background = '#000000';
+
+            // !!! setting some style here
+            scope.button.value = 'action';
+            scope.button.style.paddingTop = '0px';
+            scope.button.style.float = 'left';
+            scope.container.style.height = '20px';
 
             scope.showOn = false;
             scope.busy = false;
