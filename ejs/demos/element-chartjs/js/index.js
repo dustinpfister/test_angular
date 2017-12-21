@@ -3,7 +3,7 @@ var app = angular.module('app', []);
 // basic directive example.
 app.directive('chart', function () {
 
-    var index = 1;
+   // var index = 1;
 
     return {
 
@@ -12,14 +12,14 @@ app.directive('chart', function () {
         template: '<div><canvas></canvas></div>',
         link: function (scope, el, attr) {
 
-            var container = el[0];
-            var canvas = container.children[0];
+            var container = el[0],
+            canvas = container.children[0],
+            datasets = attr.datasets.split(' ');
 
             scope.colors = attr.colors.split(';');
             scope.labels = attr.labels.split(';') || [];
             scope.sets = [];
             scope.width = attr.width || 640;
-            var datasets = attr.datasets.split(' ');
 
             container.style.width = scope.width + 'px';
 
@@ -47,7 +47,7 @@ app.directive('chart', function () {
 
                 });
 
-            index += 1;
+            //index += 1;
 
         }
 
