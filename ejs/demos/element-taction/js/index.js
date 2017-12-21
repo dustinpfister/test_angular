@@ -23,7 +23,7 @@ app.directive('taction', function ($timeout) {
             scope.showOn = false;
             scope.busy = false;
             scope.start = new Date();
-            scope.time = 1000;
+            scope.time = attr.time || 1000;
             scope.progress = 0;
 
             // the loop function
