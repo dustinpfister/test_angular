@@ -12,6 +12,7 @@ app.directive('taction', function ($timeout) {
 
             scope.container = el[0];
             scope.canvas = scope.container.children[1];
+            scope.ctx = scope.canvas.getContext('2d');
             scope.button = scope.container.children[0];
 
             scope.button.value = 'action';
@@ -30,6 +31,7 @@ app.directive('taction', function ($timeout) {
             scope.loop = function () {
 
                 var now = new Date(),
+                ctx = scope.ctx,
                 elapsed = now - scope.start;
 
                 scope.progress = 1;
@@ -39,6 +41,13 @@ app.directive('taction', function ($timeout) {
                     $timeout(scope.loop, 33);
 
                     scope.progress = elapsed / scope.time;
+
+                    scope.ctx.fillStyle = '#8a8a8a';
+                    scope.ctx.fillRect(0, 0, scope.canvas.width, scope.canvas.height);
+
+                    scope.ctx.fillStyle = '#008a00';
+                    scope.ctx.fillRect(0, 0, scope.canvas.width * scope.progress, scope.canvas.height);
+
                     scope.onProgress();
 
                 }
@@ -104,6 +113,9 @@ app.controller('ta-control', function ($scope) {
         console.log('okay so this is cool.');
 
     }
+
+    // my own on progress
+    $scope.onProgress = function () {};
 
     // my own on done
     $scope.onDone = function () {
