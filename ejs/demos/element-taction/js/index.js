@@ -48,7 +48,7 @@ app.directive('taction', function ($timeout) {
                     scope.ctx.fillStyle = '#008a00';
                     scope.ctx.fillRect(0, 0, scope.canvas.width * scope.progress, scope.canvas.height);
 
-                    scope.onProgress();
+                    scope.onProgress(scope.progress);
 
                 }
 
