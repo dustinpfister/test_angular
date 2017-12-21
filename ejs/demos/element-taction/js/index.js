@@ -85,6 +85,13 @@ app.directive('taction', function ($timeout) {
 
             };
 
+            // can set by element attribute (must be attached to window)
+            if (attr.onclick) {
+
+                scope.onClick = window[attr.onclick];
+
+            }
+
             // onProgress method that can be set by a controller
             scope.onProgress = scope.onProgress || function () {
 
@@ -92,12 +99,26 @@ app.directive('taction', function ($timeout) {
 
             };
 
+            // can set by element attribute (must be attached to window)
+            if (attr.onProgress) {
+
+                scope.onProgress = window[attr.ooprogress];
+
+            }
+
             // onDone method that can be set by a controller
             scope.onDone = scope.onDone || function () {
 
                 console.log('define an onClick in your controller');
 
             };
+
+            // can set by element attribute (must be attached to window)
+            if (attr.onDone) {
+
+                scope.onDone = window[attr.ondone];
+
+            }
 
         }
 
@@ -108,11 +129,11 @@ app.directive('taction', function ($timeout) {
 app.controller('ta-control', function ($scope) {
 
     // set my own onclick method here
-    $scope.onClick = function () {
+    //$scope.onClick = function () {
 
-        console.log('okay so this is cool.');
+    //    console.log('okay so this is cool.');
 
-    }
+    //};
 
     // my own on progress
     $scope.onProgress = function () {};
@@ -122,6 +143,6 @@ app.controller('ta-control', function ($scope) {
 
         console.log('okay the action is now done');
 
-    }
+    };
 
 });
