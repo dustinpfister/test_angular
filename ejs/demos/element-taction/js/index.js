@@ -7,7 +7,6 @@ app.directive('taction', function ($timeout) {
     return {
 
         restrict: 'AE',
-        replace: 'true',
         scope: {
 
             time: '@time'
