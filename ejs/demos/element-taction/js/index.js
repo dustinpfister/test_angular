@@ -1,5 +1,6 @@
 var app = angular.module('app', []);
 
+
 // the taction
 app.directive('taction', function ($timeout) {
 
@@ -7,18 +8,13 @@ app.directive('taction', function ($timeout) {
 
         restrict: 'AE',
         replace: 'true',
-        //tranclude: true,
         scope: {
 
             time: '@time'
 
         },
-        template: '<div class=\"taction-container\"><input class=\"taction-input\" type=\"button\" ng-click=\"actionClick()\"><canvas class=\"taction-canvas\" ng-show="showOn"></canvas></div>',
+        template: '<div class=\"taction-container\"><input class=\"taction-input\" type=\"button\" ng-click=\"actionclick()\"><canvas class=\"taction-canvas\" ng-show="showOn"></canvas></div>',
         link: function (scope, el, attr) {
-			
-			
-			
-            console.log(scope);
 
             scope.container = el[0];
             scope.canvas = scope.container.children[1];
@@ -60,8 +56,7 @@ app.directive('taction', function ($timeout) {
 
                     scope.ctx.fillStyle = '#008a00';
                     scope.ctx.fillRect(0, 0, scope.canvas.width * scope.progress, scope.canvas.height);
-
-                    scope.onProgress(scope.progress);
+                    scope.onprogress(scope.progress);
 
                 }
 
@@ -69,15 +64,17 @@ app.directive('taction', function ($timeout) {
 
                     scope.showOn = false;
                     scope.busy = false;
+                    scope.onprogress(scope.progress);
+
                     scope.progress = 0;
-                    scope.onDone();
+                    scope.ondone();
 
                 }
 
             };
 
             // when button is clicked
-            scope.actionClick = function () {
+            scope.actionclick = function () {
 
                 console.log(scope.time);
 
@@ -86,7 +83,7 @@ app.directive('taction', function ($timeout) {
                     scope.busy = true;
                     scope.showOn = true;
                     scope.start = new Date();
-                    scope.onClick();
+                    scope.onclick();
                     scope.loop();
 
                 }
@@ -94,9 +91,9 @@ app.directive('taction', function ($timeout) {
             };
 
             // onclick method that can be set by a controller
-            scope.onClick = scope.onClick || function () {
+            scope.onclick = scope.onclick || function () {
 
-                console.log('define an onClick in your controller');
+                console.log('define an onclick in the element');
 
             };
 
@@ -108,55 +105,34 @@ app.directive('taction', function ($timeout) {
             }
 
             // onProgress method that can be set by a controller
-            scope.onProgress = scope.onProgress || function () {
+            scope.onprogress = scope.onprogress || function (p) {
 
-                console.log(scope.progress);
+                console.log('progress = ' + p);
 
             };
 
             // can set by element attribute (must be attached to window)
-            if (attr.onProgress) {
+            if (attr.onprogress) {
 
-                scope.onProgress = window[attr.ooprogress];
+                scope.onprogress = window[attr.onprogress];
 
             }
 
             // onDone method that can be set by a controller
-            scope.onDone = scope.onDone || function () {
+            scope.ondone = scope.ondone || function () {
 
-                console.log('define an onDone in your controller');
+                console.log('define an onDone in the element');
 
             };
 
             // can set by element attribute (must be attached to window)
-            if (attr.onDone) {
+            if (attr.ondone) {
 
-                scope.onDone = window[attr.ondone];
+                scope.ondone = window[attr.ondone];
 
             }
 
         }
-
-    };
-
-});
-
-app.controller('ta-control', function ($scope) {
-
-    // set my own onclick method here
-    //$scope.onClick = function () {
-
-    //    console.log('okay so this is cool.');
-
-    //};
-
-    // my own on progress
-    $scope.onProgress = function () {};
-
-    // my own on done
-    $scope.onDone = function () {
-
-        console.log('okay the action is now done');
 
     };
 

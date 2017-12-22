@@ -1,34 +1,23 @@
 
 <div ng-app="app">
- 
-    <div 
-        >
-    
-        <x-taction
-            time = "5000"
- 
-        ></x-taction>
- 
-    </div>
- 
- 
+
     <x-taction
- 
         time = "100"
- 
+        onprogress = "fromHtml"
+    ></x-taction>
+
+    <x-taction
+        time = "100"
     ></x-taction>
  
     <x-taction
- 
         time = "3000"
- 
     ></x-taction>
- 
  
  <script>
  
- var fromHtml = function(){
-    console.log('yes this is frog.')
+ var fromHtml = function(p){
+    console.log('yes this is frog.' + p)
  }
  
  </script>

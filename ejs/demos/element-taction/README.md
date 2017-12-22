@@ -20,3 +20,27 @@ just use it like an element like this:
 ```
 
 This will produce a timed action element that can be used with a controller, or old fashion event attachment style. This makes use of a canvas element to display a progress bar, and an input element that will call an internal method. onClick, onDone, and onProgress methods can be used with it.
+
+## events
+
+So far it can just be done this way
+
+```js
+<div ng-app="app">
+
+    <x-taction
+        time = "100"
+        onprogress = "fromHtml"
+    ></x-taction>
+ <script>
+ 
+ var fromHtml = function(p){
+    console.log('the progress = ' + p)
+ }
+ 
+ </script>
+ 
+</div>
+```
+
+Need to write some more demos, and maybe come back to this.
